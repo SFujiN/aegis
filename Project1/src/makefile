@@ -1,10 +1,10 @@
 objects = main.o
 
-proto : $(objects)
-	g++ -o proto $(objects)
+Aegis : $(objects)
+	g++ -o Aegis $(objects)
 
 main.o :
 
 .PHONY: clean
 clean :
-	rm proto $(objects)
+	rm Aegis $(objects)

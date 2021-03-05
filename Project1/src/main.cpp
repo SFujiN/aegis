@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "Prototype: Aegis 0.0" << std::endl;
 
 	if(argc != 2) {
-		std::cout << "Usage: ./proto <file name>" << std::endl;
+		std::cout << "Usage: " << argv[0] << " <file name>" << std::endl;
 	}
 	if(argc == 2) {
 		fileName = argv[1];
