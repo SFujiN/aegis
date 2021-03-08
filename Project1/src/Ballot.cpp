@@ -4,10 +4,10 @@ Ballot(std::vector<Candidate> v1) {
     candidates = v1;
 }
 
-Candidate getCandidate() {
+Candidate Ballot::getCandidate() {
     return candidates.at(currBallot);
 } 
-void incrCurrent() {
+void Ballot::incrCurrent() {
     currBallot++;
 }
 
