@@ -1,13 +1,14 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <stdlib.h>
 
 class VotingSystem{
   public:
     int getNumBallots();
     double getTimeTaken();
-    Candidate breakTie();
-    Candidate addWinners(Candidate);
+    Candidate breakTie(std::vector<Candidate>);
+    void addWinners(Candidate);
     virtual void runElection();
     virtual void displayResults();
     std::fstream makeAuditFile();
