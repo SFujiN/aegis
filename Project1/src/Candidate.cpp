@@ -16,5 +16,5 @@ void Candidate::incrVotes(){
   numVotes++;
 }
 void Candidate::addBallot(Ballot newBallot){
-  ballots.push_back(newBallot);
+  ballots->push_back(newBallot);
 }

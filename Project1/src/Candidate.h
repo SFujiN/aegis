@@ -19,7 +19,7 @@ class Candidate{
     char party;
     int numVotes;
     std::string name;
-    std::vector<Ballot> ballots;
+    std::vector<Ballot> *ballots;
 };
 
 #endif
