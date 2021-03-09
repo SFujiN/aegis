@@ -61,6 +61,10 @@ int main(int argc, char *argv[]) {
 			if (electionType == "OPL") {
 				file >> seats >> ballotNum;
 			}
+			if (electionType == "IR") {
+				seats = 1;
+				file >> ballotNum;
+			}
 			getline(file, line);
 			while(getline(file, line)) {
 				rawBallotInfo->push_back(line);
