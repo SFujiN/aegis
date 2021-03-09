@@ -1,12 +1,13 @@
 #ifndef OPL_H
 #define OPL_H
-//TODO: delete these and put in votingSystem
+// TODO: delete these and put in votingSystem
 #include <algorithm>
-#include <vector>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 #include "Party.h"
+#include "VotingSystem.h"
 
 class OPL : public VotingSystem {
  public:
@@ -19,6 +20,8 @@ class OPL : public VotingSystem {
   bool sortNumBallots(Party first, Party second) {
     return first.getNumBallots() < second.getNumBallots();
   }
+  void runElection();
+  void displayResults();
 
  private:
   int numSeats;
