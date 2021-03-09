@@ -47,33 +47,12 @@ void OPL::findPartyWinners() {
 //[Pike,D],[Foster,D],[Deustsch,R],[Borg,R],[Jones,R],[Smith,I]
 
 void OPL::runElection() {
-  std::string fileLine;
-  std::getline(fileName, fileLine);  // make sure fileName is fstream or w/e
-  numCandidates = std::stoi(fileLine);
-  std::getline(fileName, fileLine);  // get third line of file
-  // assign candidates
-  for (int j = 0; j < numCandidates; j++) { //TODO: halp
-    std::getline(fileLine, fileLine, ',');
-    std::string name;
-    char party;
-    name = fileLine[0];
-    party = fileLine[1];
-    Candidate newCandidate = new Candidate;
-    Candidate.name = name;
-    Candidate.party = party;
-  }
-
-  std::getline(fileName, fileLine);
-  numSeats = fileLine;
-  if (numSeats > numCandidates) {
-    numSeats = numCandidates;  // handles exception of too many seats
-  }
-  std::getline(fileName, fileLine);
-  numBallots = fileLine;
-  for (int i = 0; i < numBallots; i++) {
-    std::getline(fileName, fileLine);
-    Ballot ballot = new Ballot();
-    // fill this in
+  for (int i = 0; i < parties.size(); i++) {
+    std::vector<Candidate> partyMembers = parties[i].getPartyMembers();
+    for (int j = 0; j < partyMembers.size(); j++) {
+      parties[i].setNumBallots(parties[i].getNumBallots() +
+                               partyMembers[j].getNumBallots());
+    }
   }
 
   quota = numBallots / numSeats;
