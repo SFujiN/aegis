@@ -60,4 +60,20 @@ void OPL::runElection() {
   findPartyWinners();
 }
 
-void OPL::displayResults() {}
+void OPL::displayResults() {
+  std::cout << "General Election Information" << std::endl;
+  printf("\tElection Type: OPL\n");
+  printf("\tTotal Ballots: %d\n", numBallots);
+
+  std::cout << "\nWinners\n" << std::endl;
+  printf("\t%60s, %15s, %s", "Name", "Party", "Number of Votes");
+  for (int i = 0; i < winners.size(); i++) {
+    printf("\t%60s, %15s, %d\n", winners[i].getName(), winners[i].getParty(), winners[i].getNumVotes());
+  }
+
+  std::cout << "\nLosers\n" << std::endl;
+  printf("\t%60s, %15s, %s", "Name", "Party", "Number of Votes");
+  for (int i = 0; i < losers.size(); i++) {
+    printf("\t%60s, %15s, %d\n", losers[i].getName(), losers[i].getParty(), losers[i].getNumVotes());
+  }
+}
