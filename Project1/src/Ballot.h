@@ -1,12 +1,14 @@
 #ifndef BALLOT_H
 #define BALLOT_H
-#include "Candidate.h"
+
 #include <vector>
+
+#include "Candidate.h"
 
 class Ballot{
     public: 
         // constructor
-        Ballot(std::vector<Candidates> v1);
+        Ballot(std::vector<Candidate> *v1);
 
         // getter methods
         Candidate getCandidate(); 
@@ -15,9 +17,9 @@ class Ballot{
         void incrCurrent();
 
     private:
-        std::vector<Candidate> candidates = nullptr;
+        std::vector<Candidate> *candidates;
         int currBallot = 0;
 
-}
+};
 
-#endif BALLOT_H
+#endif

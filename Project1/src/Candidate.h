@@ -1,5 +1,10 @@
+#ifndef CANDIDATE_H
+#define CANDIDATE_H
+
 #include <string>
 #include <vector>
+
+#include "Ballot.h"
 
 class Candidate{
   public:
@@ -16,3 +21,5 @@ class Candidate{
     std::string name;
     std::vector<Ballot> ballots;
 };
+
+#endif
