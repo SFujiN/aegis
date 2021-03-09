@@ -24,10 +24,12 @@ class OPL : public VotingSystem {
   void displayResults();
 
  private:
-  int numSeats;
   int quota;
   std::vector<Party> parties;
   int numCandidates;
+
+ protected:
+  int numSeats;
 };
 
 #endif OPL_H
