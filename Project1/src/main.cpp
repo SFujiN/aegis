@@ -1,11 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
-std::vector<std::string> *extractNames(std::string line) {
+std::vector<std::string> *extractOPLNames(std::string line) {
   std::vector<std::string> *names = new std::vector<std::string>();
-  std::string word;
+  std::string name;
   char open = '[';
   char close = ']';
   std::size_t f, s, f_old = 0, s_old = 0;
@@ -15,10 +16,23 @@ std::vector<std::string> *extractNames(std::string line) {
     f_old = f + 1;
     s_old = s + 1;
 
-    word = line.substr(f + 1, s - f - 1);
-    names->push_back(word);
+    name = line.substr(f + 1, s - f - 1);
+    names->push_back(name);
   }
   return names;
+}
+
+std::vector<std::string> *extractIRNames(std::string line) {
+	std::vector<std::string> *names = new std::vector<std::string>();
+	std::stringstream strStream(line);
+	std::string name;
+
+	while(std::getline(strStream, name, ',')) {
+		names->push_back(name);
+	}
+
+
+	return names;
 }
 
 void printVec(std::vector<std::string> *vec) {
@@ -57,11 +71,12 @@ int main(int argc, char *argv[]) {
 			file >> candidateNum;
 			getline(file, line);
 			getline(file, line);
-			candidateNames = extractNames(line);
 			if (electionType == "OPL") {
+				candidateNames = extractOPLNames(line);
 				file >> seats >> ballotNum;
 			}
 			if (electionType == "IR") {
+				candidateNames = extractIRNames(line);
 				seats = 1;
 				file >> ballotNum;
 			}
