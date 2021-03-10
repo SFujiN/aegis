@@ -8,17 +8,17 @@
 
 class Candidate{
   public:
-    Candidate(char p_letter, int votes = 0, std::string c_name);
+    Candidate(char p_letter, int ballots = 0, std::string c_name);
     std::string getName();
     char getParty();
-    int getNumVotes();
-    void updateVote(int);
-    void incrVotes();
+    int getNumBallots();
+    void updateBallots(int);
+    void incrBallots();
     void addBallot(Ballot);
 
   private:
     char party;
-    int numVotes;
+    int numBallots;
     std::string name;
     std::vector<Ballot> *ballots;
 };
