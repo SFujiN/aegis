@@ -8,6 +8,7 @@
 
 class Candidate{
   public:
+    Candidate(char p_letter, int votes = 0, std::string c_name);
     std::string getName();
     char getParty();
     int getNumVotes();
