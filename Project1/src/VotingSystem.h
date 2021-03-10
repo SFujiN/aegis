@@ -21,12 +21,11 @@ class VotingSystem {
   std::string makeMediaFile();
   void printEverything();
 
- private:
+
+ protected:
+  std::string fileName;
   int numBallots;
   double timeTaken;
   std::vector<Candidate> candidates;
   std::vector<Candidate> winners;
-
- protected:
-  std::string fileName;
 };
