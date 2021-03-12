@@ -8,7 +8,7 @@
 
 class Candidate{
   public:
-    Candidate(char p_letter, int ballots = 0, std::string c_name);
+    Candidate(char p_letter, std::string c_name, int ballots = 0);
     std::string getName();
     char getParty();
     int getNumBallots();
@@ -20,7 +20,7 @@ class Candidate{
     char party;
     int numBallots;
     std::string name;
-    std::vector<Ballot> *ballots;
+    std::vector<Ballot> ballots;
 };
 
 #endif

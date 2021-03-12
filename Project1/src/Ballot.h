@@ -1,25 +1,18 @@
 #ifndef BALLOT_H
 #define BALLOT_H
-
 #include <vector>
 
-#include "Candidate.h"
+class Ballot {
+ public:
+  // constructor
+  Ballot(std::vector<int> v1);
 
-class Ballot{
-    public: 
-        // constructor
-        Ballot(std::vector<Candidate> *v1);
+  // setters methods
+  void incrCurrent();
 
-        // getter methods
-        Candidate getCandidate(); 
-
-        // setters methods
-        void incrCurrent();
-
-    private:
-        std::vector<Candidate> *candidates;
-        int currBallot = 0;
-
+ private:
+  std::vector<int> candidates;
+  int currBallot = 0;
 };
 
 #endif
