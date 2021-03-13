@@ -9,3 +9,4 @@ int Candidate::getNumBallots() { return numBallots; }
 void Candidate::updateBallots(int newBallots) { numBallots = newBallots; }
 void Candidate::incrBallots() { numBallots++; }
 void Candidate::addBallot(Ballot newBallot) { ballots.push_back(newBallot); }
+bool Candidate::operator==(const Candidate& r) { return numBallots < r.numBallots; }

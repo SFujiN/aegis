@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/src/Ballot.h
+vector
+-
+
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/src/Candidate.h
+string
+-
+vector
+-
+Ballot.h
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/src/Ballot.h
+
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/testing/BallotTest.cpp
+../src/Candidate.h
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/src/Candidate.h
+gtest/gtest.h
+/mnt/c/Users/Pants/Desktop/5801/repo-Team7/Project1/testing/gtest/gtest.h
+

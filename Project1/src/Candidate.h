@@ -15,6 +15,7 @@ class Candidate{
     void updateBallots(int);
     void incrBallots();
     void addBallot(Ballot);
+    bool operator==(const Candidate& r);
 
   private:
     char party;
