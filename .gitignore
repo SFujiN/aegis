@@ -1,3 +1,5 @@
 *.o
 *.out
 Aegis
+CMake*
+/Project1/testing/Makefile
