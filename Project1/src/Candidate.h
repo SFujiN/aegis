@@ -16,6 +16,8 @@ class Candidate{
     void incrBallots();
     void addBallot(Ballot);
 
+    bool operator==(const Candidate& rhs) const;
+
   private:
     char party;
     int numBallots;

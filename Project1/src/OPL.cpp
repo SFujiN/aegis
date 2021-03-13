@@ -1,5 +1,5 @@
 #include "OPL.h"
-
+OPL::OPL(){}
 void OPL::groupIndependentParties() {}
 
 void OPL::allocateSeats() {
@@ -76,4 +76,8 @@ void OPL::displayResults() {
   for (int i = 0; i < losers.size(); i++) {
     printf("\t%60s, %15s, %d\n", losers[i].getName(), losers[i].getParty(), losers[i].getNumBallots());
   }
+}
+
+void OPL::setParties(std::vector<Party> parties_){
+  parties = parties_;
 }

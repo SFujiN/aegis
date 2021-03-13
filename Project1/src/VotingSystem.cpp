@@ -1,5 +1,6 @@
 #include "VotingSystem.h"
 
+VotingSystem::VotingSystem(){}
 int VotingSystem::getNumBallots() { return numBallots; }
 
 double VotingSystem::getTimeTaken() {

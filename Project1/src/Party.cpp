@@ -1,5 +1,14 @@
 #include "Party.h"
 
+Party::Party(char Party){
+    party = Party;
+}
+
+bool Party::operator>(Party& rhs) const{
+    return(this->numBallots > rhs.numBallots){
+       
+}
+
 int Party::getNumBallots(){
     return numBallots;
 }

@@ -6,6 +6,9 @@
 
 class Party{
     public:
+    
+    Party(char Party);
+    bool Party::operator>(Party& rhs) const;
     //Getters
     int getNumBallots();
     int getSeatsWon();
@@ -19,6 +22,7 @@ class Party{
     void addCandidate(Candidate candidate);
 
     private:
+    char party;
     int numBallots;
     int seatsWon;
     int Remainder;

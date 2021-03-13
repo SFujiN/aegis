@@ -8,6 +8,7 @@
 #include "Ballot.h"
 #include "Candidate.h"
 
+
 class VotingSystem {
  public:
   int getNumBallots();
@@ -20,6 +21,7 @@ class VotingSystem {
   void writeToAuditFile(std::fstream, std::string);
   std::string makeMediaFile();
   void printEverything();
+  VotingSystem();
 
 
  protected:

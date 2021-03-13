@@ -8,9 +8,11 @@
 
 #include "Party.h"
 #include "VotingSystem.h"
+#include "OPL.h"
 
 class OPL : public VotingSystem {
  public:
+  OPL();
   void groupIndependentParties();
   void allocateSeats();
   void findPartyWinners();
@@ -23,7 +25,10 @@ class OPL : public VotingSystem {
   void runElection();
   void displayResults();
 
+  void setParties(std::vector<Party> parties_);
+
  private:
+
   int quota;
   std::vector<Party> parties;
   int numCandidates;

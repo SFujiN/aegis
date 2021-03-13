@@ -9,6 +9,7 @@ class Ballot {
 
   // setters methods
   void incrCurrent();
+  int getcurrBallot();
 
  private:
   std::vector<int> candidates;

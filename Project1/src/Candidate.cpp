@@ -3,6 +3,16 @@
 Candidate::Candidate(char p_letter, std::string c_name, int ballots = 0)
     : party(p_letter), name(c_name), numBallots(ballots) {}
 
+
+bool Candidate::operator==(const Candidate& rhs) const{
+    return
+    (this->name == rhs.name &&
+     this->party == rhs.party &&
+     this->numBallots == rhs.numBallots
+    );
+    
+}
+
 std::string Candidate::getName() { return name; }
 char Candidate::getParty() { return party; }
 int Candidate::getNumBallots() { return numBallots; }

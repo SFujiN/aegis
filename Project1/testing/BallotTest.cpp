@@ -8,10 +8,9 @@ class BallotTest : public ::testing::Test {
 public:
     void SetUp() {
         default = Ballot();
-        Bob = new Candidate(“I”,5,”Bob”);
-        Jane = new Candidate(“D”,7,”Jane”);
-        David = new Candidate(“L”,1000,”Dave”);
-
+         Bob = Candidate('I',5,"Bob");
+        Jane = Candidate('D',7,"Jane");
+        David = Candidate('L',1000,"Dave");
         ballot1={Bob,John,Jane,David};
     }
 
