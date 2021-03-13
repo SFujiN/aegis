@@ -49,7 +49,7 @@ TEST_F (PartyTest, getSeatsWonTest) {
    
 }
 
-TEST_F (PartyTest, candidateTest) {
+TEST_F (PartyTest, getPartyMembers) {
     std::vector<Candidate> test1 = All.getPartyMembers();
     EXPECT_EQ(test1[0],Bob) << "Candidate Vector has errors";
     EXPECT_EQ(test1[1],Jane) << "Candidate Vector has errors";
