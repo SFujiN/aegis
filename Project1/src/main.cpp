@@ -9,7 +9,7 @@ std::vector<std::string> *extractOPLNames(std::string line) {
   std::string name;
   char open = '[';
   char close = ']';
-  std::size_t f, s, f_old = 0, s_old = 0;
+  // std::size_t f, s, f_old = 0, s_old = 0;
 
   while ((f = line.find(open, f_old)) != std::string::npos &&
          (s = line.find(close, s_old)) != std::string::npos) {
