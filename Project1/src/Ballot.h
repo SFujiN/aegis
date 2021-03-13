@@ -11,6 +11,11 @@ class Ballot {
   void incrCurrent();
   int getcurrBallot();
 
+  // getters methods
+  int getCurrent(); 
+  std::vector<int> getCandidates();
+  int getCurrBallotIndex(); //candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
+
  private:
   std::vector<int> candidates;
   int currBallot = 0;
