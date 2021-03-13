@@ -9,7 +9,7 @@ public:
         
         Bob = Candidate('I',"Bob",5);
         Jane = Candidate('D',"Jane",7);
-        David = Candidate('L',"Dave",1000);
+        David = Candidate('L',"David",1000);
 
         I = Party('I');
         D = Party('D');
@@ -39,14 +39,14 @@ protected:
     VotingSystem Aegis;
 };
 
-TEST_F (OPLTest, AllocateSeatsTest) {
+TEST_F (OPLTest, allocateSeatsTest) {
     election.allocateSeats();
 
-    EXPECT_TRUE(D>I) << "Error with allocate seats"
+    EXPECT_TRUE(D>I) << "Error with allocate seats";
     EXPECT_TRUE(L>D) << "Error with allocate seats";  
 }
 
-TEST_F(OPLTest, FindPartyWinnersTest){
+TEST_F(OPLTest, findPartyWinnersTest) {
     election.findPartyWinners();
 
     EXPECT_EQ(election.winners[0], David) << "Error with findPartyWinners";
