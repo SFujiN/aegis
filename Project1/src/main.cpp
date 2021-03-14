@@ -12,7 +12,7 @@ int IRBallotToIndex(std::string ballot) {
   int index = 0;
   std::string number{};
   int length = ballot.find('1');
-  std::string line = ballot.substr(0,length);
+  std::string line = ballot.substr(0, length);
   std::stringstream strStream(line);
 
   while (std::getline(strStream, number, ',')) {
@@ -23,29 +23,28 @@ int IRBallotToIndex(std::string ballot) {
 }
 
 std::vector<int> BallotToVec(int num, std::string ballot) {
-  std::vector<int> result;
+  std::vector<int> result(num);
   std::stringstream strStream(ballot);
   std::string val;
 
-  for (int i = 0; i < num; i++) {
-    if (std::getline(strStream, val, ',')) {
-      if (val.length() != 0) {
-        result.push_back(std::stoi(val));
-      } else {
-        result.push_back(0);
-      }
-    } else {
-      result.push_back(0);
+  for (int i = 0; std::getline(strStream, val, ','); i++) {
+    if (val.length() != 0) {
+      result.at(i) = std::stoi(val);
     }
   }
-  // while (std::getline(strStream, val, ',')) {
-  //   std::cout << "val: " << val << std::endl;
-  //   if (val.length() != 0) {
-  //     result.push_back(std::stoi(val));
-  //   } else {
-  //     result.push_back(0);
-  //   }
-  // }
+
+  return result;
+}
+
+std::vector<int> IRBallotToVec(int num, std::string ballot) {
+  std::vector<int> result(num);
+  std::vector<int> ballotVec = BallotToVec(num, ballot);
+
+  for (int i = 0; i < num; i++) {
+    if (ballotVec.at(i) != 0) {
+      result.at(ballotVec.at(i) - 1) = i + 1;
+    }
+  }
 
   return result;
 }
@@ -169,7 +168,7 @@ int main(int argc, char *argv[]) {
         for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
           Aegis->getCandidates()
               .at(IRBallotToIndex(*it))
-              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+              .addBallot(Ballot(IRBallotToVec(candidateNum, *it)));
         }
       }
       printVec(rawBallotInfo);
@@ -187,6 +186,7 @@ int main(int argc, char *argv[]) {
       }
       std::cout << std::endl;
 
+      // Aegis->assignParty();
       Aegis->runElection();
       Aegis->displayResults();
 
