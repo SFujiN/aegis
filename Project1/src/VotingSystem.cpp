@@ -23,13 +23,13 @@ void VotingSystem::displayResults() {
 }
 
 void VotingSystem::setAuditFileName(){
-  std::chrono::system_clock::time_point tp = system_clock::now();
+  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
   auditfilename = std::to_string(dtn.count())+"txt";
 }
 
 void VotingSystem::makeAuditFile() {
-   std::chrono::system_clock::time_point tp = system_clock::now();
+   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
    std::chrono::system_clock::duration dtn = tp.time_since_epoch();
    auditFile.open(auditfilename);
    auditFile.close();
