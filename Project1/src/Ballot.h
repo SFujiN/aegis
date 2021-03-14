@@ -9,7 +9,6 @@ class Ballot {
 
   // setters methods
   void incrCurrent();
-  int getcurrBallot();
 
   // getters methods
   int getCurrent(); 

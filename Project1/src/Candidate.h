@@ -15,7 +15,9 @@ class Candidate{
     void updateBallots(int);
     void incrBallots();
     void addBallot(Ballot);
-    bool operator==(const Candidate& r);
+    std::vector<Ballot> getBallots();
+
+    Candidate& Candidate::operator=(const Candidate& rhs);
 
     bool operator==(const Candidate& rhs) const;
 
