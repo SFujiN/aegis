@@ -6,7 +6,9 @@ std::string Candidate::getName() { return name; }
 
 char Candidate::getParty() { return party; }
 
-std::vector<Ballot> Candidate::getBallots() { return ballots; }
+std::vector<Ballot> &Candidate::getBallots() { return ballots; }
+
+int Candidate::getInitBallots(){ return initBallots; }
 
 int Candidate::getNumBallots() { return ballots.size(); }
 

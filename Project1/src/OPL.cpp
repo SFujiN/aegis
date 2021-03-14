@@ -125,7 +125,7 @@ void OPL::printPartyInfo() {
   }
 }
 
-/* void OPL::displayResults() {
+void OPL::displayResults() {
   std::cout << "General Election Information" << std::endl;
   printf("\tElection Type: OPL\n");
   printf("\tTotal Ballots: %d\n", numBallots);
@@ -143,7 +143,7 @@ void OPL::printPartyInfo() {
     printf("\t%-60s %-15c %-d\n", losers[i].getName().c_str(),
            losers[i].getParty(), losers[i].getNumBallots());
   }
-} */
+}
 
 void OPL::setParties(std::vector<Party> parties_) { parties = parties_; }
 

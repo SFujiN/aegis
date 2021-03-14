@@ -52,6 +52,8 @@ class IR : public VotingSystem {
 
   virtual void runElection();
 
+  virtual void displayResults();
+
   void printCandidateInfo();
 
   void checkIfOneCand();

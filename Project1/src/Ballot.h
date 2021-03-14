@@ -16,6 +16,7 @@ class Ballot {
   int getCurrBallotIndex(); //candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
 
   void printBallot();
+  int getCurrBallot();
 
 
  private:
