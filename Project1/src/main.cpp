@@ -188,7 +188,6 @@ int main(int argc, char *argv[]) {
 
       // Aegis->assignParty();
       Aegis->runElection();
-      Aegis->displayResults();
 
       // std::cout << "Election Type: \t" << electionType << std::endl;
       // std::cout << "Number of Candidates: \t" << candidateNum << std::endl;

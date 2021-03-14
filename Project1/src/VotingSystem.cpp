@@ -14,6 +14,7 @@ double VotingSystem::getTimeTaken() { return 0; }
 void VotingSystem::runElection() {
   std::sort(candidates.begin(),candidates.end());
   std::reverse(candidates.begin(),candidates.end());
+  displayResults();
 }
 
 void VotingSystem::displayResults() {
@@ -25,7 +26,7 @@ void VotingSystem::displayResults() {
 void VotingSystem::setAuditFileName(){
   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-  auditfilename = std::to_string(dtn.count())+"txt";
+  auditfilename = std::to_string(dtn.count())+".txt";
 }
 
 void VotingSystem::makeAuditFile() {
