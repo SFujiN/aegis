@@ -18,6 +18,8 @@ int Party::getRemainder() { return Remainder; }
 
 std::vector<Candidate*> Party::getPartyMembers() {return partyMembers;}
 
+void Party::setNumBallots(int num) { numBallots = num; }
+
 void Party::setSeatsWon(int seats) { seatsWon = seats; }
 
 void Party::setRemainder(int num) { Remainder = num; }

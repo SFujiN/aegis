@@ -16,11 +16,11 @@
 
 class VotingSystem {
  public:
-  VotingSystem(std::string type, int candidates, int seats, int ballots);
+  //VotingSystem(std::string type, int candidates, int seats, int ballots);
   int getNumBallots();
   double getTimeTaken();
   // Candidate breakTie(std::vector<Candidate>);
-  // void addWinners(Candidate);
+  void addWinners(Candidate);
   virtual void runElection();
   virtual void displayResults();
   void makeAuditFile();
@@ -43,6 +43,7 @@ class VotingSystem {
   std::vector<Candidate> candidates;
   std::vector<Party> parties;
 
-  // std::vector<Candidate> winners;
+  std::vector<Candidate> winners;
+  std::vector<Candidate> losers; //this can be: print out vector of candidates after popping all winners(?)
 };
 #endif

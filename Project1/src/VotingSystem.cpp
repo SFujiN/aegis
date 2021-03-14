@@ -1,24 +1,25 @@
 #include "VotingSystem.h"
 
-VotingSystem::VotingSystem(std::string type, int candidates, int seats,
+/* VotingSystem::VotingSystem(std::string type, int candidates, int seats,
                            int ballots)
     : electionType(type),
       numCandidates(candidates),
       numSeats(seats),
       numBallots(ballots) {}
-
+ */
 int VotingSystem::getNumBallots() { return numBallots; }
 
 double VotingSystem::getTimeTaken() { return 0; }
 
 void VotingSystem::runElection() {
-  std::sort(candidates.begin(),candidates.end());
-  std::reverse(candidates.begin(),candidates.end());
+  std::sort(candidates.begin(), candidates.end());
+  std::reverse(candidates.begin(), candidates.end());
 }
 
 void VotingSystem::displayResults() {
   for (Candidate curr : candidates) {
-    std::cout << curr.getName() << " " << curr.getParty() <<  " with " << curr.getNumBallots() << " votes." << std::endl;
+    std::cout << curr.getName() << " " << curr.getParty() << " with "
+              << curr.getNumBallots() << " votes." << std::endl;
   }
 }
 
@@ -50,10 +51,11 @@ bool VotingSystem::partyExists(char party) {
 }
 
 void VotingSystem::assignParty() {
-  for(auto party = parties.begin(); party != parties.end(); party++) {
-    for(auto candidate = candidates.begin(); candidate != candidates.end(); candidate++ ) {
-      if (party->getPartyName() == candidate->getParty()) {
-        this->addCandidate(*candidate);
+  for (int i = 0; i < parties.size(); i++) {
+    for (int j = 0; j < candidates.size(); j++) {
+      if (parties[i].getPartyName() == candidates[j].getParty()) {
+        parties[i].addCandidate(
+            &candidates[j]);  // If the party names (char) are the same
       }
     }
   }

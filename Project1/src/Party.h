@@ -17,9 +17,11 @@ class Party{
     //Adding/Setting Stuff
     void setSeatsWon(int seats);
     void setRemainder(int num);
+    void setNumBallots(int num);
     void addCandidate(Candidate *candidate);
 
     private:
+    int numBallots;
     char name;
     int seatsWon;
     int Remainder;

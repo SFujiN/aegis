@@ -4,7 +4,7 @@
 // #include <string>
 // #include <vector>
 
-#include "VotingSystem.h"
+#include "OPL.h"
 
 int OPLBallotToIndex(std::string ballot) { return ballot.find('1'); }
 
@@ -135,9 +135,9 @@ int main(int argc, char *argv[]) {
       while (getline(file, line)) {
         rawBallotInfo.push_back(line);
       }
-      Aegis = new VotingSystem(electionType, candidateNum, seatNum, ballotNum);
 
       if (electionType == "OPL") {
+        Aegis = new OPL(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
              it++) {
           char partyLetter = it->at(it->find(',') + 1);
@@ -155,6 +155,7 @@ int main(int argc, char *argv[]) {
       }
 
       if (electionType == "IR") {
+        //OPL *Aegis = new OPL(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
              it++) {
           std::string line = *it;
@@ -186,7 +187,16 @@ int main(int argc, char *argv[]) {
       }
       std::cout << std::endl;
 
-      // Aegis->assignParty();
+      Aegis->assignParty();
+      /* std::vector<Party> newParties = Aegis->getParties();
+      for (int i = 0; i < 4; i++) {
+        Party thisParty = newParties[i];
+        std::vector<Candidate *> thisCandidate =
+            newParties[i].getPartyMembers();
+        std::cout << thisCandidate[0]->getName() << std::endl;
+      } */
+
+      //parties are now set up
       Aegis->runElection();
       Aegis->displayResults();
 
