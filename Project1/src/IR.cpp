@@ -13,7 +13,7 @@ void IR::findWinner() {
   // tempElim = new Candidate('a', "temp");
   elim = &candidates[0];
   if ((elim->getNumBallots() / numBallots > 0.5)) {  // Checking for over 50%
-    std::cout << "majority" << std::endl;
+    //std::cout << "majority" << std::endl;
     addWinners(*elim);
   }
   for (int i = 1; i < numCandidates; i++) {
@@ -21,20 +21,20 @@ void IR::findWinner() {
     // std::cout << "candidate votes: " << candidates[i].getNumBallots()
     //<< std::endl;
     // candidates[i].setInitBallots(candidates[i].getNumBallots());
-    printCandidateInfo();
+    //printCandidateInfo();
     // std::cout << "findWinner" << std::endl;
     if ((candidates[i].getNumBallots() / numBallots >
          0.5)) {  // Checking for over 50%
-      std::cout << "majority" << std::endl;
+      //std::cout << "majority" << std::endl;
       addWinners(candidates[i]);
     }
     if ((candidates[i].getNumBallots() < elim->getNumBallots()) &&
         candidates[i].getNumBallots() != 0) {
-      std::cout << "loser" << std::endl;
+      //std::cout << "loser" << std::endl;
       elim = &candidates[i];
     } else if (candidates[i].getNumBallots() == elim->getNumBallots() &&
                candidates[i].getNumBallots() != 0) {
-      std::cout << "loser tie" << std::endl;
+      //std::cout << "loser tie" << std::endl;
       *elim = breakTie(candidates[i], *elim);
     }
   }
@@ -42,21 +42,21 @@ void IR::findWinner() {
 
 void IR::elimination() {
   // std::cout << "elimination1: " << elim->getNumBallots() << std::endl;
-  std::cout << "elim: " << elim->getName() << std::endl;
+  //std::cout << "elim: " << elim->getName() << std::endl;
   for (int i = elim->getNumBallots() - 1; i >= 0; i--) {
     // std::cout << "elimination inside: " << elim->getNumBallots() <<
     // std::endl;
-    elim->getBallots().at(i).printBallot();
+    //elim->getBallots().at(i).printBallot();
     // std::cout << "elimBallot1: " << elim->getBallots().at(i).getCurrBallot()
     // << std::endl;
     elim->getBallots()
         .at(i)
         .incrCurrent();  // Increment every ballot from that candidate
     Ballot ballot = elim->getBallots().at(i);
-    std::cout << "index: " << ballot.getCurrBallotIndex() << std::endl;
+    //std::cout << "index: " << ballot.getCurrBallotIndex() << std::endl;
     while (ballot.getCurrBallotIndex() >= 0 && (candidates[ballot.getCurrBallotIndex()].getNumBallots() == 0) && (ballot.getCurrBallot() < candidates.size() - 1)) {
-      std::cout << "currBallot: " << ballot.getCurrBallot() << std::endl;
-      std::cout << "size: " << candidates.size() << std::endl;
+      //std::cout << "currBallot: " << ballot.getCurrBallot() << std::endl;
+      //std::cout << "size: " << candidates.size() << std::endl;
       ballot.incrCurrent();
     }
     //printCandidateInfo();
@@ -118,8 +118,8 @@ void IR::checkIfOneCand() {
     i++;
   } */
   if (!flag) {
-    std::cout << "flag: " << flag << std::endl;
-    std::cout << candidates[index].getName() << " is a winner" << std::endl;
+    //std::cout << "flag: " << flag << std::endl;
+    //std::cout << candidates[index].getName() << " is a winner" << std::endl;
     addWinners(candidates[index]);
   }
 }
