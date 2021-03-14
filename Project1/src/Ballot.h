@@ -1,6 +1,7 @@
 #ifndef BALLOT_H
 #define BALLOT_H
 #include <vector>
+#include <iostream>
 
 class Ballot {
  public:
@@ -13,6 +14,9 @@ class Ballot {
   // getters methods
   std::vector<int> getCandidates();
   int getCurrBallotIndex(); //candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
+
+  void printBallot();
+
 
  private:
   std::vector<int> candidates;

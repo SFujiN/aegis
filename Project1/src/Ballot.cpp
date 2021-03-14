@@ -12,3 +12,9 @@ int Ballot::getCurrBallotIndex(){
 // [   4,  2,  1 ,  3,  0] 
 //    i=0  i=1 i=2 i=3  i=4
  //candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
+
+void Ballot::printBallot(){
+  for (int i = 0; i < candidates.size(); i++) {
+    std::cout << "candidate[" << i << "]: " << candidates[i] << std::endl;
+  }
+}
