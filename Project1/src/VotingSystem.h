@@ -9,10 +9,12 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <chrono>
 
 #include "Ballot.h"
 #include "Candidate.h"
 #include "Party.h"
+
 
 class VotingSystem {
  public:
@@ -81,7 +83,7 @@ class VotingSystem {
 */
 
 
-  void writeToAuditFile(std::fstream, std::string);
+  void writeToAuditFile(std::string string);
 
   /**
  * @brief Writes to the audit file.
@@ -161,6 +163,9 @@ class VotingSystem {
 
 */
 
+void setAuditFileName();
+
+
  protected:
   std::string electionType;
   int numCandidates;
@@ -169,6 +174,8 @@ class VotingSystem {
   double timeTaken;
   std::vector<Candidate> candidates;
   std::vector<Party> parties;
+  std::ofstream auditfile;
+  std::string auditfilename;
 
   // std::vector<Candidate> winners;
 };

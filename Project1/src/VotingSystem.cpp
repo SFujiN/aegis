@@ -22,9 +22,24 @@ void VotingSystem::displayResults() {
   }
 }
 
-void VotingSystem::makeAuditFile() {}
+void VotingSystem::setAuditFileName(){
+  std::chrono::system_clock::time_point tp = system_clock::now();
+  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+  auditfilename = std::to_string(dtn.count())+"txt";
+}
 
-void VotingSystem::writeToAuditFile(std::fstream, std::string) {}
+void VotingSystem::makeAuditFile() {
+   std::chrono::system_clock::time_point tp = system_clock::now();
+   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+   auditfile.open(auditfilename);
+   auditfile.close();
+}
+
+void VotingSystem::writeToAuditFile(std::string string) {
+  auditfile.open(auditfilename);
+  auditfile << string << std::endl;
+  auditfile.close();
+}
 
 std::string VotingSystem::makeMediaFile() { return "Hello"; }
 
