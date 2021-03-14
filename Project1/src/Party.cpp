@@ -14,11 +14,11 @@ int Party::getNumBallots() {
 
 int Party::getSeatsWon() { return seatsWon; }
 
-int Party::getRemainder() { return remainder; }
+int Party::getRemainder() { return Remainder; }
 
 void Party::setSeatsWon(int seats) { seatsWon = seats; }
 
-void Party::setRemainder(int num) { remainder = num; }
+void Party::setRemainder(int num) { Remainder = num; }
 
 void Party::addCandidate(Candidate *candidate) {
   partyMembers.push_back(candidate);

@@ -1,6 +1,6 @@
 #include "Candidate.h"
 
-Candidate::Candidate(char partyLetter, std::string candidateName) : party(partyLetter), name(candidateName) { status = true; }
+Candidate::Candidate(char p_letter, std::string c_name) : party(p_letter), name(c_name) { status = true; }
 
 std::string Candidate::getName() { return name; }
 
