@@ -5,7 +5,6 @@
 #include <vector>
 #include <iostream>
 
-#include "Ballot.h"
 #include "Candidate.h"
 
 

@@ -1,9 +1,5 @@
 #include "gtest/gtest.h"
-#include "Ballot.h"
-#include"Candidate.h"
-#include "Party.h"
 #include "OPL.h"
-#include "VotingSystem.h"
 #include <vector>
 
 
@@ -11,9 +7,9 @@ class OPLTest : public ::testing::Test {
 public:
     void SetUp() {
         
-        Bob = Candidate('I',5,"Bob");
-        Jane = Candidate('D',7,"Jane");
-        David = Candidate('L',1000,"Dave");
+        Bob = Candidate('I',"Bob",5);
+        Jane = Candidate('D',"Jane",7);
+        David = Candidate('L',"David",1000);
 
         I = Party('I');
         D = Party('D');
@@ -38,20 +34,20 @@ protected:
     Candidate Bob;
     Candidate Jane;
     Candidate David;
-    Party I;
+    Party I, D, L;
     OPL election;
     VotingSystem Aegis;
 };
 
-TEST_F (OPLTest, AllocateSeatsTest) {
+TEST_F (OPLTest, allocateSeatsTest) {
     election.allocateSeats();
 
-    EXPECT_TRUE(D>I) << "Error with allocate seats"
+    EXPECT_TRUE(D>I) << "Error with allocate seats";
     EXPECT_TRUE(L>D) << "Error with allocate seats";  
 }
 
-TEST_F(OPLTest, FindPartyWinnersTest){
+TEST_F(OPLTest, findPartyWinnersTest) {
     election.findPartyWinners();
 
-    EXPECT_EQ(election.winners[0], David) << "ERror with findPartyWinners";
+    EXPECT_EQ(election.winners[0], David) << "Error with findPartyWinners";
 }

@@ -8,7 +8,6 @@
 
 #include "Party.h"
 #include "VotingSystem.h"
-#include "OPL.h"
 
 class OPL : public VotingSystem {
  public:
