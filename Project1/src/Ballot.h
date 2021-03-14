@@ -27,7 +27,7 @@ class Ballot {
    * @brief Default constructor. Takes in only a vector of ints representing
    * ranked choices and assigns it to candidates.
    *
-   * @param vector, vector of ints representing ranked chocies. Assigned to
+   * @param v1, vector of ints representing ranked chocies. Assigned to
    * candidates.
    */
   Ballot(std::vector<int> v1);
@@ -41,7 +41,7 @@ class Ballot {
   /**
    * @brief Method to return candidates vector.
    *
-   * @return Returns a vector of ints.
+   * @return Returns the vector of candidates.
    */
   std::vector<int> getCandidates();
 
@@ -49,7 +49,7 @@ class Ballot {
    * @brief Method to get the current ballot index required to identify the
    * candidate the ballot currently belongs to.
    *
-   * @return Returns an integer.
+   * @return Returns the current ballot index.
    */
   int getCurrBallotIndex();  // candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
 
