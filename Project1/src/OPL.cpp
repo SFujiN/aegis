@@ -129,16 +129,16 @@ void OPL::displayResults() {
   printf("\tTotal Ballots: %d\n", numBallots);
 
   std::cout << "\nWinners" << std::endl;
-  printf("\t%60s, %15s, %s", "Name", "Party", "Number of Ballots");
+  printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
   for (int i = 0; i < winners.size(); i++) {
-    printf("\t%60s, %15c, %d\n", winners[i].getName().c_str(),
+    printf("\t%-60s %-15c %-d\n", winners[i].getName().c_str(),
            winners[i].getParty(), winners[i].getNumBallots());
   }
 
   std::cout << "\nLosers\n" << std::endl;
-  printf("\t%60s, %15s, %s", "Name", "Party", "Number of Ballots");
+  printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
   for (int i = 0; i < losers.size(); i++) {
-    printf("\t%60s, %15c, %d\n", losers[i].getName().c_str(),
+    printf("\t%-60s %-15c %-d\n", losers[i].getName().c_str(),
            losers[i].getParty(), losers[i].getNumBallots());
   }
 }
