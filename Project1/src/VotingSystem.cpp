@@ -31,17 +31,22 @@ void VotingSystem::setAuditFileName(){
 void VotingSystem::makeAuditFile() {
    std::chrono::system_clock::time_point tp = system_clock::now();
    std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-   auditfile.open(auditfilename);
-   auditfile.close();
+   auditFile.open(auditfilename);
+   auditFile.close();
 }
 
 void VotingSystem::writeToAuditFile(std::string string) {
-  auditfile.open(auditfilename);
-  auditfile << string << std::endl;
-  auditfile.close();
+  auditFile.open(auditfilename);
+  auditFile << string << std::endl;
+  auditFile.close();
 }
 
-std::string VotingSystem::makeMediaFile() { return "Hello"; }
+void VotingSystem::makeMediaFile(std::string string) { 
+  mediaFile.open("Media" + auditfilename);
+  mediaFile << string << std::endl;
+  mediaFile.close();
+
+}
 
 void VotingSystem::printEverything() {}
 

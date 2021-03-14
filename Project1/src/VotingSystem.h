@@ -88,13 +88,13 @@ class VotingSystem {
   /**
  * @brief Writes to the audit file.
  * 
- * @param[in] std::fstream The file that it's writing to.
+ * 
 *  @param[in] std::string What will be written into the audit file.
  * 
  * @return void.
 
 */
-  std::string makeMediaFile();
+  void makeMediaFile(std::string string);
   void printEverything();
   void addCandidate(Candidate candidate);
 
@@ -174,8 +174,9 @@ void setAuditFileName();
   double timeTaken;
   std::vector<Candidate> candidates;
   std::vector<Party> parties;
-  std::ofstream auditfile;
+  std::ofstream auditFile;
   std::string auditfilename;
+  std::ofstream mediaFile;
 
   // std::vector<Candidate> winners;
 };
