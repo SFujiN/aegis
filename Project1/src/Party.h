@@ -12,7 +12,7 @@ class Party{
     int getNumBallots();
     int getSeatsWon();
     int getRemainder();
-    std::vector<Candidate> getPartyMembers();
+    std::vector<Candidate*> getPartyMembers();
 
     //Adding/Setting Stuff
     void setSeatsWon(int seats);
