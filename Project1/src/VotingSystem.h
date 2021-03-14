@@ -34,6 +34,7 @@ class VotingSystem {
   std::vector<Party> &getParties();
   bool partyExists(char party);
   void assignParty();
+  virtual ~VotingSystem() = default;
 
  protected:
   std::string electionType;
