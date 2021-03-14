@@ -1,10 +1,12 @@
 #include "OPL.h"
+
 OPL::OPL(std::string type, int candidates, int seats, int ballots) {
   electionType = type;
   numCandidates = candidates;
   numSeats = seats;
   numBallots = ballots;
 }
+
 void OPL::groupIndependentParties() {}
 
 void OPL::sortByVotes() {  // I know this is insertion sort, may God have mercy
@@ -90,7 +92,7 @@ void OPL::findPartyWinners() {
       } else {
         addLosers(*partyMembers[k]);
       }
-    } 
+    }
   }
 }
 
@@ -123,7 +125,7 @@ void OPL::printPartyInfo() {
   }
 }
 
-void OPL::displayResults() {
+/* void OPL::displayResults() {
   std::cout << "General Election Information" << std::endl;
   printf("\tElection Type: OPL\n");
   printf("\tTotal Ballots: %d\n", numBallots);
@@ -141,7 +143,7 @@ void OPL::displayResults() {
     printf("\t%-60s %-15c %-d\n", losers[i].getName().c_str(),
            losers[i].getParty(), losers[i].getNumBallots());
   }
-}
+} */
 
 void OPL::setParties(std::vector<Party> parties_) { parties = parties_; }
 

@@ -5,6 +5,7 @@
 // #include <vector>
 
 #include "OPL.h"
+#include "IR.h"
 
 int OPLBallotToIndex(std::string ballot) { return ballot.find('1'); }
 
@@ -152,10 +153,11 @@ int main(int argc, char *argv[]) {
               .at(OPLBallotToIndex(*it))
               .addBallot(Ballot(BallotToVec(candidateNum, *it)));
         }
+        //Aegis->assignParty();
       }
 
       if (electionType == "IR") {
-        //*Aegis = new IR(electionType, candidateNum, seatNum, ballotNum);
+        Aegis = new IR(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
              it++) {
           std::string line = *it;

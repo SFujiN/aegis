@@ -16,13 +16,6 @@ void VotingSystem::runElection() {
   std::reverse(candidates.begin(), candidates.end());
 }
 
-void VotingSystem::displayResults() {
-  for (Candidate curr : candidates) {
-    std::cout << curr.getName() << " " << curr.getParty() << " with "
-              << curr.getNumBallots() << " votes." << std::endl;
-  }
-}
-
 void VotingSystem::makeAuditFile() {}
 
 void VotingSystem::writeToAuditFile(std::fstream, std::string) {}
@@ -51,6 +44,8 @@ std::vector<Party> &VotingSystem::getParties() { return parties; }
 
 bool VotingSystem::partyExists(char party) {
   for (Party curr : parties) {
+  //std::cout << "partyExists Parties: " << parties[0].getPartyName() << std::endl;
+  //for (int i = 0; i < parties.size(); i++) {
     if (curr.getPartyName() == party) {
       return true;
     }
@@ -66,5 +61,25 @@ void VotingSystem::assignParty() {
             &candidates[j]);  // If the party names (char) are the same
       }
     }
+  }
+}
+
+void VotingSystem::displayResults() {
+  std::cout << "General Election Information" << std::endl;
+  printf("\tElection Type: OPL\n");
+  printf("\tTotal Ballots: %d\n", numBallots);
+
+  std::cout << "\nWinners" << std::endl;
+  printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
+  for (int i = 0; i < winners.size(); i++) {
+    printf("\t%-60s %-15c %-d\n", winners[i].getName().c_str(),
+           winners[i].getParty(), winners[i].getNumBallots());
+  }
+
+  std::cout << "\nLosers\n" << std::endl;
+  printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
+  for (int i = 0; i < losers.size(); i++) {
+    printf("\t%-60s %-15c %-d\n", losers[i].getName().c_str(),
+           losers[i].getParty(), losers[i].getNumBallots());
   }
 }

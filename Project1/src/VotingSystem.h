@@ -23,7 +23,7 @@ class VotingSystem {
   void addWinners(Candidate candidate);
   void addLosers(Candidate candidate);
   virtual void runElection();
-  virtual void displayResults();
+  void displayResults();
   void makeAuditFile();
   void writeToAuditFile(std::fstream, std::string);
   std::string makeMediaFile();

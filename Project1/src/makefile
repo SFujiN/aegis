@@ -1,4 +1,4 @@
-objects = main.o VotingSystem.o Candidate.o Ballot.o Party.o OPL.o
+objects = main.o VotingSystem.o Candidate.o Ballot.o Party.o OPL.o IR.o
 CFLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 CXXFLAGS = $(CFLAGS)
 
@@ -16,6 +16,8 @@ Ballot.o :
 Party.o :
 
 OPL.o :
+
+IR.o :
 
 .PHONY: clean
 clean :
