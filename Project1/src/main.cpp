@@ -172,8 +172,8 @@ int main(int argc, char *argv[]) {
               .addBallot(Ballot(IRBallotToVec(candidateNum, *it)));
         }
       }
-      printVec(rawBallotInfo);
-      std::vector<int> test2 = BallotToVec(candidateNum, rawBallotInfo.at(0));
+      // printVec(rawBallotInfo);
+      // std::vector<int> test2 = BallotToVec(candidateNum, rawBallotInfo.at(0));
 
       // print out the index value of first ballet
       // std::cout << OPLBallotToIndex(rawBallotInfo.at(0)) << std::endl;
