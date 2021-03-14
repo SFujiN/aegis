@@ -50,5 +50,11 @@ bool VotingSystem::partyExists(char party) {
 }
 
 void VotingSystem::assignParty() {
-  
+  for(auto party = parties.begin(); party != parties.end(); party++) {
+    for(auto candidate = candidates.begin(); candidate != candidates.end(); candidate++ ) {
+      if (party->getPartyName() == candidate->getParty()) {
+        this->addCandidate(*candidate);
+      }
+    }
+  }
 }
