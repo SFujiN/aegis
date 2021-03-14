@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
       }
 
       if (electionType == "IR") {
-        //OPL *Aegis = new OPL(electionType, candidateNum, seatNum, ballotNum);
+        //*Aegis = new IR(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
              it++) {
           std::string line = *it;

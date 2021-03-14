@@ -12,6 +12,8 @@
 class OPL : public VotingSystem {
  public:
   OPL(std::string type, int candidates, int seats, int ballots);
+  void sortByVotes();
+  void sortByRemainder();
   void groupIndependentParties();
   void allocateSeats();
   void findPartyWinners();
@@ -26,14 +28,10 @@ class OPL : public VotingSystem {
 
   void setParties(std::vector<Party> parties_);
 
+  void printPartyInfo();
+
  private:
-
   int quota;
-  std::vector<Party> parties;
-  int numCandidates;
-
- protected:
-  int numSeats;
 };
 
 #endif

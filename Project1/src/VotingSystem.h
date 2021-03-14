@@ -20,7 +20,7 @@ class VotingSystem {
   int getNumBallots();
   double getTimeTaken();
   // Candidate breakTie(std::vector<Candidate>);
-  void addWinners(Candidate);
+  void addWinners(Candidate candidate);
   virtual void runElection();
   virtual void displayResults();
   void makeAuditFile();
