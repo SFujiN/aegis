@@ -7,8 +7,6 @@ OPL::OPL(std::string type, int candidates, int seats, int ballots) {
   numBallots = ballots;
 }
 
-void OPL::groupIndependentParties() {}
-
 void OPL::sortByVotes() {
   int i, j;
   for (i = 1; i < parties.size(); i++) {

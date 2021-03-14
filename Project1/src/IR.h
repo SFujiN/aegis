@@ -20,17 +20,11 @@ class IR : public VotingSystem {
 
   */
   IR(std::string type, int candidates, int seats, int ballots);
-
-  void findWinner();
   /**
    * @brief Attempts to find a winner in the IR election.
    *
-   *
-   *
-   * @return Candidate.
    */
-  void elimination();
-
+  void findWinner();
   /**
    * @brief Eliminates a candidate.
    *
@@ -39,27 +33,45 @@ class IR : public VotingSystem {
    *
    * @return void.
    */
-
-  Candidate breakTie(Candidate a, Candidate b);
+  void elimination();
 
   /**
    * @brief Returns a candidate after tie.
    *
    * Takes in two candidates that are "tied" and randomly decides one to remove.
    *
-   * @return char.
+   * @return Candidate that won the tie breaker.
+   */
+
+  Candidate breakTie(Candidate a, Candidate b);
+
+  /**
+   * @brief virtual function to handle election program.
    */
 
   virtual void runElection();
 
+  /**
+   * @brief virtual function to display results of election.
+   */
+
   virtual void displayResults();
 
+  /**
+   * @brief prints out information about candidates for debugging purposes.
+   */
+
   void printCandidateInfo();
+  /**
+   * @brief checks if only one candidate is left in the running. If so, that
+   * candidate is declared the winner.
+   *
+   */
 
   void checkIfOneCand();
 
  private:
-  Candidate* elim;
+  Candidate* elim; ///< Holds the current candidate to be eliminated.
 };
 
 #endif

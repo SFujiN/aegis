@@ -146,6 +146,9 @@ class VotingSystem {
 
   */
   void assignParty();
+  /**
+   * @brief Destructor for VotingSystem types
+   */
   virtual ~VotingSystem() = default;
 
   /**
@@ -162,18 +165,18 @@ class VotingSystem {
   void setAuditFileName();
 
  protected:
-  std::string electionType;
-  int numCandidates;
-  int numSeats;
-  int numBallots;
-  double timeTaken;
-  std::vector<Candidate> candidates;
-  std::vector<Party> parties;
-  std::ofstream auditFile;
-  std::string auditfilename;
-  std::ofstream mediaFile;
+  std::string electionType; ///< Type of election being held
+  int numCandidates; ///< holds the number of Candidates running for seats
+  int numSeats; ///< holds the number of seats up for election
+  int numBallots; ///< holds the number of ballots to be processed
+  double timeTaken; ///< holds the amount of time taken by the program to execute
+  std::vector<Candidate> candidates; ///< vector to hold candidates running for a seat
+  std::vector<Party> parties; ///< vector to hold all parties involved with the election
+  std::ofstream auditFile; ///< 
+  std::string auditfilename; ///< 
+  std::ofstream mediaFile; ///< 
 
-  std::vector<Candidate> winners;
-  std::vector<Candidate> losers; //this can be: print out vector of candidates after popping all winners(?)
+  std::vector<Candidate> winners; ///< vector to hold all winners
+  std::vector<Candidate> losers; ///< vector to hold all losers
 };
 #endif
