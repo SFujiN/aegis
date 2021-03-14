@@ -16,7 +16,7 @@ int IRBallotToIndex(std::string ballot) {
   return index;
 }
 
-std::vector<int> BallotToVec(int num, std::string ballot) {
+std::vector<int> OPLBallotToVec(int num, std::string ballot) {
   std::vector<int> result(num);
   std::stringstream strStream(ballot);
   std::string val;

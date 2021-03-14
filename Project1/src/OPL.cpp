@@ -53,6 +53,7 @@ void OPL::allocateSeats() {
     currParty.setSeatsWon(seats);
   }  // For loop end
   sortByRemainder();
+
   int i = 0;
   while (numSeats != 0) {
     parties[i].setSeatsWon(parties[i].getSeatsWon() + 1);
@@ -74,6 +75,7 @@ void OPL::findPartyWinners() {
       } else {
         addLosers(*partyMembers[k]);
       }
+
     }
   }
 }
@@ -85,6 +87,7 @@ void OPL::runElection() {
     for (int j = 0; j < partyMembers.size(); j++) {
       parties[i].setNumBallots(parties[i].getNumBallots() +
                                partyMembers[j]->getNumBallots());
+
     }
   }
 

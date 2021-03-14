@@ -1,6 +1,7 @@
 #ifndef PARTY_H
 #define PARTY_H
 #include <vector>
+#include "Candidate.h"
 
 #include "Candidate.h"
 

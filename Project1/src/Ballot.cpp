@@ -9,7 +9,6 @@ void Ballot::incrCurrent() {
 }
 
 std::vector<int> Ballot::getCandidates() { return candidates; }
-
 int Ballot::getCurrBallotIndex() {
   return candidates[currBallot] - 1;  // returns index of candidate in actual candidate vector
 }
