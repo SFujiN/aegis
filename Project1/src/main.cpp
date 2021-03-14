@@ -1,34 +1,209 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+// #include <fstream>
+// #include <iostream>
+// #include <sstream>
+// #include <string>
+// #include <vector>
+
+#include "VotingSystem.h"
+
+int OPLBallotToIndex(std::string ballot) { return ballot.find('1'); }
+
+int IRBallotToIndex(std::string ballot) {
+  int index = 0;
+  std::string number{};
+  int length = ballot.find('1');
+  std::string line = ballot.substr(0,length);
+  std::stringstream strStream(line);
+
+  while (std::getline(strStream, number, ',')) {
+    index++;
+  }
+
+  return index;
+}
+
+std::vector<int> BallotToVec(int num, std::string ballot) {
+  std::vector<int> result;
+  std::stringstream strStream(ballot);
+  std::string val;
+
+  for (int i = 0; i < num; i++) {
+    if (std::getline(strStream, val, ',')) {
+      if (val.length() != 0) {
+        result.push_back(std::stoi(val));
+      } else {
+        result.push_back(0);
+      }
+    } else {
+      result.push_back(0);
+    }
+  }
+  // while (std::getline(strStream, val, ',')) {
+  //   std::cout << "val: " << val << std::endl;
+  //   if (val.length() != 0) {
+  //     result.push_back(std::stoi(val));
+  //   } else {
+  //     result.push_back(0);
+  //   }
+  // }
+
+  return result;
+}
+
+std::string popItem(std::string &line, char l, char r) {
+  std::size_t open, close, len;
+  std::string name;
+  open = line.find(l);
+  close = line.find(r);
+  len = close - open;
+
+  name = line.substr(open + 1, (len)-1);
+  line = line.substr(close + 1, line.length() - close - 1);
+
+  return name;
+}
+
+std::vector<std::string> extractOPLNames(std::string line) {
+  std::vector<std::string> names;
+  std::string name;
+  char open = '[';
+  char close = ']';
+
+  while ((name = popItem(line, open, close)) != "") {
+    names.push_back(name);
+  }
+
+  return names;
+}
+
+std::vector<std::string> extractIRNames(std::string line) {
+  std::vector<std::string> names;
+  std::stringstream strStream(line);
+  std::string name;
+
+  while (std::getline(strStream, name, ',')) {
+    names.push_back(name);
+  }
+
+  return names;
+}
+
+void printVec(std::vector<std::string> vec) {
+  for (auto it = vec.begin(); it != vec.end(); it++) {
+    std::cout << "\t" << *it << std::endl;
+  }
+}
+
+void printVecI(std::vector<int> vec) {
+  for (auto it = vec.begin(); it != vec.end(); it++) {
+    std::cout << "\t" << *it << " ";
+  }
+  std::cout << std::endl;
+}
 
 int main(int argc, char *argv[]) {
-	std::string fileName, fileContent;
-	std::fstream file;
-	std::cout << "Prototype: Aegis 0.0" << std::endl;
+  std::string fileName, fileContent, electionType, line;
+  std::fstream file;
+  int candidateNum, seatNum, ballotNum;
+  std::vector<std::string> candidateNames, rawBallotInfo;
+  VotingSystem *Aegis;
+  std::cout << "Prototype: Aegis 0.0" << std::endl;
 
-	if(argc != 2) {
-		std::cout << "Usage: " << argv[0] << " <file name>" << std::endl;
-	}
-	if(argc == 2) {
-		fileName = argv[1];
-		file.open(fileName, std::ios::in);
+  if (argc != 2) {
+    std::cout << "Usage: " << argv[0] << " <file name>" << std::endl;
+  }
+  if (argc == 2) {
+    fileName = argv[1];
+    file.open(fileName, std::ios::in);
 
-		if(!file.is_open()) {
-			std::cout << "Couldn't open: " << fileName << std::endl;
-		} else {
-			file.seekg(0, std::ios::end);
-			auto size = file.tellg();
-			fileContent = std::string(size, '\0');
-			file.seekg(0);
-			file.read(&fileContent[0], size);
+    if (!file.is_open()) {
+      std::cout << "Couldn't open: " << fileName << std::endl;
+    } else {
+      getline(file, electionType);
+      file >> candidateNum;
+      getline(file, line);
+      getline(file, line);
+      if (electionType == "OPL") {
+        candidateNames = extractOPLNames(line);
+        file >> seatNum >> ballotNum;
+      }
+      if (electionType == "IR") {
+        candidateNames = extractIRNames(line);
+        seatNum = 1;
+        file >> ballotNum;
+      }
+      getline(file, line);
+      while (getline(file, line)) {
+        rawBallotInfo.push_back(line);
+      }
+      Aegis = new VotingSystem(electionType, candidateNum, seatNum, ballotNum);
 
-			std::cout << "file name: " << fileName << std::endl;
-			std::cout << "file content: \n" << fileContent << std::endl;
-		}
+      if (electionType == "OPL") {
+        for (auto it = candidateNames.begin(); it != candidateNames.end();
+             it++) {
+          char partyLetter = it->at(it->find(',') + 1);
+          if (!Aegis->partyExists(partyLetter)) {
+            Aegis->addParty(Party(partyLetter));
+          }
+          Aegis->addCandidate(
+              Candidate(partyLetter, it->substr(0, it->find(','))));
+        }
+        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
+          Aegis->getCandidates()
+              .at(OPLBallotToIndex(*it))
+              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+        }
+      }
 
-		file.close();
-	}
+      if (electionType == "IR") {
+        for (auto it = candidateNames.begin(); it != candidateNames.end();
+             it++) {
+          std::string line = *it;
+          char partyLetter = it->at(it->find('(') + 1);
+          if (!Aegis->partyExists(partyLetter)) {
+            Aegis->addParty(Party(partyLetter));
+          }
+          Aegis->addCandidate(
+              Candidate(partyLetter, it->substr(0, it->find(' '))));
+        }
+        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
+          Aegis->getCandidates()
+              .at(IRBallotToIndex(*it))
+              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+        }
+      }
+      printVec(rawBallotInfo);
+      std::vector<int> test2 = BallotToVec(candidateNum, rawBallotInfo.at(0));
 
-	return 0;
+      // print out the index value of first ballet
+      // std::cout << OPLBallotToIndex(rawBallotInfo.at(0)) << std::endl;
+
+      // print to see what's in a ballot vector
+      // printVecI(test2);
+
+      for (auto it = Aegis->getParties().begin();
+           it != Aegis->getParties().end(); it++) {
+        std::cout << it->getPartyName() << " ";
+      }
+      std::cout << std::endl;
+
+      Aegis->runElection();
+      Aegis->displayResults();
+
+      // std::cout << "Election Type: \t" << electionType << std::endl;
+      // std::cout << "Number of Candidates: \t" << candidateNum << std::endl;
+      // std::cout << "Names of Candidates:" << std::endl;
+      // printVec(candidateNames);
+      // std::cout << "Number of seats: \t" << seatNum << std::endl;
+      // std::cout << "Number of ballots: \t" << ballotNum << std::endl;
+      // std::cout << "Raw ballow info:" << std::endl;
+      // printVec(rawBallotInfo);
+    }
+
+    delete Aegis;
+
+    file.close();
+  }
+
+  return 0;
 }
