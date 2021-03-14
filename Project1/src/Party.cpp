@@ -12,11 +12,26 @@ int Party::getNumBallots() {
   return total;
 }
 
+void Party::sortByVotes() {
+  int i, j;
+  for (i = 1; i < partyMembers.size(); i++) {
+    Candidate* key = partyMembers[i];
+    j = i - 1;
+    while (j >= 0 && partyMembers[j]->getNumBallots() < key->getNumBallots()) {
+      partyMembers[j + 1] = partyMembers[j];
+      j = j - 1;
+    }
+    partyMembers[j + 1] = key;
+  }
+}
+
 int Party::getSeatsWon() { return seatsWon; }
 
 int Party::getRemainder() { return Remainder; }
 
-std::vector<Candidate*> Party::getPartyMembers() {return partyMembers;}
+std::vector<Candidate *> Party::getPartyMembers() { return partyMembers; }
+
+void Party::setNumBallots(int num) { numBallots = num; }
 
 void Party::setSeatsWon(int seats) { seatsWon = seats; }
 

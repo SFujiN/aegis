@@ -15,12 +15,17 @@ class Candidate{
     void addBallot(Ballot ballot);
     void negateStatus();
     bool operator<(Candidate& r);
+    int getInitBallots();
+    std::vector<Ballot> &getBallots();
+    void setInitBallots(int numBallots);
+    void setBallots(std::vector<Ballot>);
 
   private:
     char party;
     std::string name;
     bool status;
     std::vector<Ballot> ballots;
+    int initBallots = 0;
 };
 
 #endif
