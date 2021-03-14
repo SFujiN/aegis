@@ -39,6 +39,10 @@ void VotingSystem::addWinners(Candidate candidate) {
   winners.push_back(candidate);
 }
 
+void VotingSystem::addLosers(Candidate candidate) {
+  losers.push_back(candidate);
+}
+
 void VotingSystem::addParty(Party party) { parties.push_back(party); }
 
 std::vector<Candidate> &VotingSystem::getCandidates() { return candidates; }

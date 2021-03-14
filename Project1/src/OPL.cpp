@@ -82,19 +82,15 @@ void OPL::findPartyWinners() {
     // std::cout << "seats won: " << parties[i].getSeatsWon() << std::endl;
     // std::cout << "parties size: " << partyMembers.size() << std::endl;
 
-    for (int j = 0; j < parties[i].getSeatsWon(); j++) {
-      addWinners(*partyMembers[j]);
-    }
-
-    /* numSeats = parties[i].getSeatsWon();
-    for (size of parties[i]) {
+    numSeats = parties[i].getSeatsWon();
+    for (int k = 0; k < partyMembers.size(); k++) {
       if (numSeats != 0) {
-        addWinners(*partyMembers[j]);
+        addWinners(*partyMembers[k]);
         numSeats--;
       } else {
-        addLosers(*partyMembers[j]);
+        addLosers(*partyMembers[k]);
       }
-    } */
+    } 
   }
 }
 
