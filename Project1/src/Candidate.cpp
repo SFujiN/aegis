@@ -16,9 +16,8 @@ void Candidate::addBallot(Ballot ballot) { ballots.push_back(ballot); }
 
 void Candidate::negateStatus() { status = !status; }
 
-bool Candidate::operator<(Candidate& r) { return this->getNumBallots() < r.getNumBallots(); 
+bool Candidate::operator<(Candidate& r) { return this->getNumBallots() < r.getNumBallots(); }
 
 void Candidate::setInitBallots(int numBallots){initBallots = numBallots;}
 
 void Candidate::setBallots(std::vector<Ballot> newBallots){ ballots = newBallots;}
-
