@@ -34,9 +34,9 @@ int IRBallotToIndex(std::string ballot);
  * @param num the size of the vector, or the number of candidates.
  * @param ballot a string that represents ballot information.
  * 
- * @return vector representing an OPL ballot.
+ * @return vector representing any ballot.
  */
-std::vector<int> OPLBallotToVec(int num, std::string ballot);
+std::vector<int> BallotToVec(int num, std::string ballot);
 
 /**
  * @brief Returns a vector that represents an IR ballot.
@@ -44,7 +44,7 @@ std::vector<int> OPLBallotToVec(int num, std::string ballot);
  * @param num the size of the vector, or the number of candidates.
  * @param ballot a string that represents ballot information.
  * 
- * @return vector representing an IR ballot.
+ * @return vector representing specifically an IR ballot.
  */
 std::vector<int> IRBallotToVec(int num, std::string ballot);
 
