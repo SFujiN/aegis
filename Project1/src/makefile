@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-objects = main.o helpers.o VotingSystem.o Candidate.o Ballot.o Party.o
-=======
-objects = main.o
->>>>>>> development
+objects = main.o VotingSystem.o Candidate.o Ballot.o Party.o OPL.o IR.o
+
 CFLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 CXXFLAGS = $(CFLAGS)
 
@@ -11,8 +8,6 @@ Aegis : $(objects)
 
 main.o :
 
-helpers.o :
-
 VotingSystem.o :
 
 Candidate.o :
@@ -20,6 +15,10 @@ Candidate.o :
 Ballot.o :
 
 Party.o :
+
+OPL.o :
+
+IR.o :
 
 .PHONY: clean
 clean :

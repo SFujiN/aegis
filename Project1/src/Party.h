@@ -14,17 +14,19 @@ class Party{
     int getSeatsWon();
     int getRemainder();
     std::vector<Candidate*> getPartyMembers();
+    void sortByVotes();
 
     //Adding/Setting Stuff
     void setSeatsWon(int seats);
     void setRemainder(int num);
+    void setNumBallots(int num);
     void addCandidate(Candidate *candidate);
 
     private:
-    char name;
     int numBallots;
-    int seatsWon;
-    int Remainder;
+    char name;
+    int seatsWon = 0;
+    int Remainder = 0;
     std::vector<Candidate*> partyMembers;
 
 };

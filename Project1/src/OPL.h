@@ -11,11 +11,11 @@
 
 class OPL : public VotingSystem {
  public:
-  OPL();
+  OPL(std::string type, int candidates, int seats, int ballots);
+  void sortByVotes();
+  void sortByRemainder();
   void groupIndependentParties();
-  void allocateSeats();
-  
-  /**
+    /**
  * @brief Gives Seats to parties.
  * 
  * Sorts the parties by number of votes and then allocates the amount of seats
@@ -26,8 +26,8 @@ class OPL : public VotingSystem {
  * @return void.
 
 */
-  void findPartyWinners();
-  /**
+  void allocateSeats();
+    /**
  * @brief Add winners to winners vector.
  * 
  * Goes through every party and adds the top of each party
@@ -37,35 +37,14 @@ class OPL : public VotingSystem {
  * @return void.
 
 */
-  bool sortRemainder(Party first, Party second) {
+  void findPartyWinners();
+    bool sortRemainder(Party first, Party second) {
     return first.getRemainder() < second.getRemainder();
   }
-  /**
- * @brief Sorts the vector of remainders.
- * 
- * In order to distribute the remaining votes
- * Sort the remaining vector from largest to least
- * and then assign the remainder votes until theres no more.
- * 
- * @return bool.
-
-*/
   bool sortNumBallots(Party first, Party second) {
     return first.getNumBallots() < second.getNumBallots();
   }
-
-  /**
- * @brief Sorts the number of ballots from parties.
- * 
- * Goes through each of the parties and sorts them from
- * Greatest to least in order to allocate votes correctly.
- * 
- * @return bool.
-
-*/
-  void runElection();
-
-  /**
+    /**
  * @brief Runs the IR election..
  * 
  * Runs all of the methods needed to run a IR election.
@@ -73,9 +52,8 @@ class OPL : public VotingSystem {
  * @return void.
 
 */
-  void displayResults();
-
-  /**
+  void runElection();
+    /**
  * @brief Prints the results of the election.
  * 
  * Displays all the information an election official would need in an election.
@@ -88,8 +66,7 @@ class OPL : public VotingSystem {
  * @return void.
 
 */
-
-void setParties(std::vector<Party> parties_);
+  void displayResults();
 
 /**
  * @brief A setter for parties.
@@ -99,15 +76,12 @@ void setParties(std::vector<Party> parties_);
  * @return char.
 
 */
+  void setParties(std::vector<Party> parties_);
+
+  void printPartyInfo();
 
  private:
-
   int quota;
-  std::vector<Party> parties;
-  int numCandidates;
-
- protected:
-  int numSeats;
 };
 
-#endif OPL_H
+#endif

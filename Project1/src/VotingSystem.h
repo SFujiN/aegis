@@ -17,7 +17,7 @@
 
 class VotingSystem {
  public:
-  VotingSystem(std::string type, int candidates, int seats, int ballots);
+  // VotingSystem(std::string type, int candidates, int seats, int ballots);
 
   /**
  * @brief Constructor for the voting system.
@@ -48,8 +48,8 @@ class VotingSystem {
 
 */
   // Candidate breakTie(std::vector<Candidate>);
-  // void addWinners(Candidate);
-
+  void addWinners(Candidate candidate);
+  void addLosers(Candidate candidate);
   virtual void runElection();
   /**
  * @brief Will be used to run elections.
@@ -146,6 +146,7 @@ class VotingSystem {
 
   */
   void assignParty();
+  virtual ~VotingSystem() = default;
 
   /**
  * @brief Adds candidates to parties.
@@ -172,6 +173,7 @@ class VotingSystem {
   std::string auditfilename;
   std::ofstream mediaFile;
 
-  // std::vector<Candidate> winners;
+  std::vector<Candidate> winners;
+  std::vector<Candidate> losers; //this can be: print out vector of candidates after popping all winners(?)
 };
 #endif
