@@ -27,7 +27,7 @@ void Party::sortByVotes() {
 
 int Party::getSeatsWon() { return seatsWon; }
 
-int Party::getRemainder() { return Remainder; }
+int Party::getRemainder() { return remainder; }
 
 std::vector<Candidate *> Party::getPartyMembers() { return partyMembers; }
 
@@ -35,7 +35,7 @@ void Party::setNumBallots(int num) { numBallots = num; }
 
 void Party::setSeatsWon(int seats) { seatsWon = seats; }
 
-void Party::setRemainder(int num) { Remainder = num; }
+void Party::setRemainder(int num) { remainder = num; }
 
 void Party::addCandidate(Candidate *candidate) {
   partyMembers.push_back(candidate);
