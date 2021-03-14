@@ -9,8 +9,7 @@ OPL::OPL(std::string type, int candidates, int seats, int ballots) {
 
 void OPL::groupIndependentParties() {}
 
-void OPL::sortByVotes() {  // I know this is insertion sort, may God have mercy
-                           // on my soul
+void OPL::sortByVotes() {
   int i, j;
   for (i = 1; i < parties.size(); i++) {
     Party key = parties[i];
@@ -37,11 +36,8 @@ void OPL::sortByRemainder() {
 }
 
 void OPL::allocateSeats() {
-  // sort(parties.begin(), parties.end(), sortNumBallots);
   sortByVotes();
   for (int i = 0; i < parties.size(); i++) {  // For loop start for each party
-    // std::cout << "allocateSeatsParties" << std::endl;
-    // std::cout << "num seats: " << numSeats << std::endl;
     Party &currParty = parties[i];
     int seats = (int)currParty.getNumBallots() / quota;
     if (currParty.getPartyMembers().size() > seats) {
@@ -50,39 +46,25 @@ void OPL::allocateSeats() {
     } else if (currParty.getPartyMembers().size() == seats) {
       numSeats -= seats;
       currParty.setRemainder(0);
-    } else {  // party.sizeof(Candidates) < seats THESE GUYS MIGHT GET TOO MANY
-              // SEATS
+    } else {
       numSeats -= currParty.getPartyMembers().size();
       currParty.setRemainder(0);
     }
-    // std::cout << "party: " << currParty.getPartyName() << std::endl;
-    // std::cout << "allocateSeats seats: " << seats << std::endl;
     currParty.setSeatsWon(seats);
-    // std::cout << "getSeats: " << currParty.getSeatsWon() << std::endl;
   }  // For loop end
-  // sort(parties.begin(), parties.end(), sortRemainder);
   sortByRemainder();
   int i = 0;
-  // std::cout << "allocateSeats numSeats while: " << numSeats << std::endl;
   while (numSeats != 0) {
-    // std::cout << "i: " << i << std::endl;
-    // Party &currParty = parties[i];
-    // std::cout << "allocateSeats getSeatsWon while: " <<
-    // currParty.getSeatsWon() << std::endl;
     parties[i].setSeatsWon(parties[i].getSeatsWon() + 1);
     i++;
     numSeats--;
   }
-  // printPartyInfo();
 }
 
 void OPL::findPartyWinners() {
   for (int i = 0; i < parties.size(); i++) {
-    // std::cout << "findPartyWinnersParties" << std::endl;
     parties[i].sortByVotes();
     std::vector<Candidate *> partyMembers = parties[i].getPartyMembers();
-    // std::cout << "seats won: " << parties[i].getSeatsWon() << std::endl;
-    // std::cout << "parties size: " << partyMembers.size() << std::endl;
 
     numSeats = parties[i].getSeatsWon();
     for (int k = 0; k < partyMembers.size(); k++) {
@@ -96,12 +78,9 @@ void OPL::findPartyWinners() {
   }
 }
 
-//[Pike,D],[Foster,D],[Deustsch,R],[Borg,R],[Jones,R],[Smith,I]
-
 void OPL::runElection() {
   // iterate through all parties and add up ballots
   for (int i = 0; i < parties.size(); i++) {
-    // std::cout << "runElectionParties" << std::endl;
     std::vector<Candidate *> partyMembers = parties[i].getPartyMembers();
     for (int j = 0; j < partyMembers.size(); j++) {
       parties[i].setNumBallots(parties[i].getNumBallots() +
@@ -110,9 +89,7 @@ void OPL::runElection() {
   }
 
   quota = numBallots / numSeats;
-  // printPartyInfo();
   allocateSeats();
-  // printPartyInfo();
   findPartyWinners();
 }
 
@@ -146,6 +123,3 @@ void OPL::displayResults() {
 }
 
 void OPL::setParties(std::vector<Party> parties_) { parties = parties_; }
-
-// void OPL::runElection() { std::cout << "run" << std::endl; }
-// void OPL::displayResults() { std::cout << "display" << std::endl; }
