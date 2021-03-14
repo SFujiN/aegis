@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 objects = main.o helpers.o VotingSystem.o Candidate.o Ballot.o Party.o
+=======
+objects = main.o
+>>>>>>> development
 CFLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 CXXFLAGS = $(CFLAGS)
 

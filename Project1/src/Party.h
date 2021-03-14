@@ -1,6 +1,7 @@
 #ifndef PARTY_H
 #define PARTY_H
 #include <vector>
+#include "Candidate.h"
 
 #include "Candidate.h"
 
@@ -21,6 +22,7 @@ class Party{
 
     private:
     char name;
+    int numBallots;
     int seatsWon;
     int Remainder;
     std::vector<Candidate*> partyMembers;
