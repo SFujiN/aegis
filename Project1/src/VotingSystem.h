@@ -85,7 +85,7 @@ class VotingSystem {
  * @brief Writes to the audit file.
  *
  *
-*  @param[in] std::string What will be written into the audit file.
+*  @param[in] string What will be written into the audit file.
  *
  * @return void.
 
@@ -102,7 +102,6 @@ class VotingSystem {
  * Takes in a candidate and then adds the candidate to the vector of candidates.
  *
  * @return void.
-
 */
 
   void addParty(Party party);
