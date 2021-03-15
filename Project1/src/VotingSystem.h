@@ -50,26 +50,24 @@ class VotingSystem {
   // Candidate breakTie(std::vector<Candidate>);
   void addWinners(Candidate candidate);
   void addLosers(Candidate candidate);
-  virtual void runElection();
   /**
- * @brief Will be used to run elections.
- *
- * Used by inherited classes to run their respective elections.
- *
- * @return void.
+   * @brief Will be used to run elections.
+   *
+   * Used by inherited classes to run their respective elections.
+   *
+   * @return void.
+   */
+  virtual void runElection();
 
-*/
+  /**
+   * @brief Used to display results.
+   *
+   * Used by inherited classes to run display their own results.
+   *
+   * @return void.
+   */
   virtual void displayResults();
 
-  /**
- * @brief Used to display results.
- *
- * Used by inherited classes to run display their own results.
- *
- * @return void.
-
-*/
-  void makeAuditFile();
   /**
    * @brief Creates an audit file.
    *
@@ -78,64 +76,62 @@ class VotingSystem {
    * @return void.
 
   */
-
-  void writeToAuditFile(std::string string);
+  void makeAuditFile();
 
   /**
- * @brief Writes to the audit file.
- *
- *
-*  @param[in] string What will be written into the audit file.
- *
- * @return void.
+   * @brief Writes to the audit file.
+   *
+   *
+   *  @param[in] string What will be written into the audit file.
+   *
+   * @return void.
+   */
+  void writeToAuditFile(std::string string);
 
-*/
   void makeMediaFile(std::string string);
   void printEverything();
+
+  /**
+   * @brief Adds a Candidate to candidates vector.
+   *
+   * @param[in] candidate the candidate that will be added
+   *
+   * Takes in a candidate and then adds the candidate to the vector of
+   * candidates.
+   *
+   * @return void.
+   */
   void addCandidate(Candidate candidate);
 
   /**
- * @brief Adds a Candidate to candidates vector.
- *
- * @param[in] candidate the candidate that will be added
- *
- * Takes in a candidate and then adds the candidate to the vector of candidates.
- *
- * @return void.
-*/
-
+   * @brief Adds a party to parties vector.
+   *
+   * @param[in] party the party that will be added
+   *
+   * Takes in a party and then adds the party to the vector of parties.
+   *
+   * @return void.
+   */
   void addParty(Party party);
-  /**
- * @brief Adds a party to parties vector.
- *
- * @param[in] party the party that will be added
- *
- * Takes in a party and then adds the party to the vector of parties.
- *
- * @return void.
 
-*/
+  /**
+   * @brief Gets the vector of candidates.
+   *
+   * Returns the vector of candidates which contain candidates.
+   *
+   * @return std::vector<Candidate>.
+   */
   std::vector<Candidate> &getCandidates();
 
   /**
-   * @brief Gets the vector of candidates.
+   * @brief Gets the vector of parties.
    *
-   * Returns the vector of candidates which contain candidates.
+   * Returns the vector of parties which contain candidates.
    *
-   * @return std::vector<Candidate>.
-
-  */
-
+   * @return std::vector<Party>.
+   */
   std::vector<Party> &getParties();
-  /**
-   * @brief Gets the vector of candidates.
-   *
-   * Returns the vector of candidates which contain candidates.
-   *
-   * @return std::vector<Candidate>.
 
-  */
-  bool partyExists(char party);
   /**
    * @brief Checks if a party exists.
    *
@@ -143,13 +139,8 @@ class VotingSystem {
    * Checks through the vector of parties to see if it exists or not.
    *
    * @return bool.
-
-  */
-  void assignParty();
-  /**
-   * @brief Destructor for VotingSystem types
    */
-  virtual ~VotingSystem() = default;
+  bool partyExists(char party);
 
   /**
  * @brief Adds candidates to parties.
@@ -161,22 +152,31 @@ class VotingSystem {
  * @return void.
 
 */
+  void assignParty();
+
+  /**
+   * @brief Destructor for VotingSystem types
+   */
+  virtual ~VotingSystem() = default;
 
   void setAuditFileName();
 
  protected:
-  std::string electionType; ///< Type of election being held
-  int numCandidates; ///< holds the number of Candidates running for seats
-  int numSeats; ///< holds the number of seats up for election
-  int numBallots; ///< holds the number of ballots to be processed
-  double timeTaken; ///< holds the amount of time taken by the program to execute
-  std::vector<Candidate> candidates; ///< vector to hold candidates running for a seat
-  std::vector<Party> parties; ///< vector to hold all parties involved with the election
-  std::ofstream auditFile; ///< 
-  std::string auditfilename; ///< 
-  std::ofstream mediaFile; ///< 
+  std::string electionType;  ///< Type of election being held
+  int numCandidates;  ///< holds the number of Candidates running for seats
+  int numSeats;       ///< holds the number of seats up for election
+  int numBallots;     ///< holds the number of ballots to be processed
+  double
+      timeTaken;  ///< holds the amount of time taken by the program to execute
+  std::vector<Candidate>
+      candidates;  ///< vector to hold candidates running for a seat
+  std::vector<Party>
+      parties;  ///< vector to hold all parties involved with the election
+  std::ofstream auditFile;    ///<
+  std::string auditfilename;  ///<
+  std::ofstream mediaFile;    ///<
 
-  std::vector<Candidate> winners; ///< vector to hold all winners
-  std::vector<Candidate> losers; ///< vector to hold all losers
+  std::vector<Candidate> winners;  ///< vector to hold all winners
+  std::vector<Candidate> losers;   ///< vector to hold all losers
 };
 #endif
