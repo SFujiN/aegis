@@ -12,6 +12,10 @@
 
 #include "../src/VotingSystem.h"
 
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
+
 /**
  * @brief A class representing the IR Voting System, used to run an IR
  * election results.

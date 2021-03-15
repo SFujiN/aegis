@@ -1,5 +1,15 @@
+/**
+ * @file OPL.h
+ *
+ * @copyright 2021 Aegis, All rights reserved.
+ */
+
 #ifndef OPL_H
 #define OPL_H
+
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
 
 #include <algorithm>
 #include <fstream>
@@ -8,6 +18,10 @@
 
 #include "../src/Party.h"
 #include "../src/VotingSystem.h"
+
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
 
 /**
  * @brief A class representing the OPL Voting System, used to run an OPL

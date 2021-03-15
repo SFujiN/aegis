@@ -1,7 +1,7 @@
 /**
  * @file Party.h
  *
- * @copyright 2020, All rights reserved.
+ * @copyright 2021 Aegis, All rights reserved.
  */
 
 #ifndef PARTY_H
