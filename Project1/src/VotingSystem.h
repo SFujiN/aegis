@@ -15,6 +15,11 @@
 #include "Candidate.h"
 #include "Party.h"
 
+/**
+ * @brief A class representing a generic Voting System to be used for running
+ * election results.
+ *
+ */
 class VotingSystem {
  public:
   // VotingSystem(std::string type, int candidates, int seats, int ballots);
@@ -41,14 +46,14 @@ class VotingSystem {
   // Candidate breakTie(std::vector<Candidate>);
   /**
    * @brief Adds a winning candidate to the winners vector.
-   * 
+   *
    * @return void.
    */
   void addWinners(Candidate candidate);
 
   /**
    * @brief Adds a losing candidate to the losers vector.
-   * 
+   *
    * @return void.
    */
   void addLosers(Candidate candidate);
@@ -77,7 +82,7 @@ class VotingSystem {
    * Creates a new file that will be used as an audit for the election
    *
    * @return void.
-  */
+   */
   void makeAuditFile();
 
   /**
@@ -91,16 +96,16 @@ class VotingSystem {
 
   /**
    * @brief Makes a media file to be written to.
-   * 
+   *
    * @return void.
    */
   void makeMediaFile();
 
   /**
    * @brief Writes a message to the media file.
-   * 
+   *
    * @param string What will be written into the media file.
-   * 
+   *
    * @return void.
    */
   void writeToMediaFile(std::string string);
