@@ -104,7 +104,7 @@ void OPL::runElection() {
   for (int i = 0; i < parties.size(); i++) {
     std::vector<Candidate *> partyMembers = parties[i].getPartyMembers();
     for (int j = 0; j < partyMembers.size(); j++) {
-      writeToAuditFile("Number: " + std::to_string(partyMembers[j]->getNumBallots()) + " Ballots added to " + parties[i].getPartyName() + " Party.\n" );
+      writeToAuditFile(std::to_string(partyMembers[j]->getNumBallots()) + " Ballots added to " + parties[i].getPartyName() + " Party.\n" );
 
       parties[i].setNumBallots(parties[i].getNumBallots() +
                                partyMembers[j]->getNumBallots());
