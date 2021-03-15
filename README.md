@@ -9,3 +9,5 @@ $ make
 from within the folder where the executable is built usage of Aegis is done using:
 
 $ ./Aegis <file_name>
+
+To run the unit tests, enter the "testing" directory. To compile, run "g++ <fileName>" and then run "./a.out" to run the unit test for the corresponding file.
