@@ -119,7 +119,9 @@ int main(int argc, char *argv[]) {
       // printVec(rawBallotInfo);
     }
 
-    delete Aegis;
+    if (Aegis != nullptr) {
+      delete Aegis;
+    }
 
     file.close();
   }
