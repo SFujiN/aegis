@@ -39,16 +39,6 @@ class VotingSystem {
   // VotingSystem(std::string type, int candidates, int seats, int ballots);
 
   /**
-   * @brief Returns the number of ballots in the system..
-   *
-   * Returns the number of ballots in the current system which is a parameter
-   * given when created.
-   *
-   * @return int.
-
-  */
-
-  /**
      * @brief Returns the winner vector.
      *
      * Returns the vector containing all the winners of this election.
@@ -58,7 +48,15 @@ class VotingSystem {
     */
   std::vector<Candidate> getWinners() { return winners; };
 
-  
+ /**
+   * @brief Returns the number of ballots in the system..
+   *
+   * Returns the number of ballots in the current system which is a parameter
+   * given when created.
+   *
+   * @return int.
+
+  */
   int getNumBallots();
 
   /**
