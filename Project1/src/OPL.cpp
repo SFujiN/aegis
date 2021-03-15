@@ -84,14 +84,18 @@ void OPL::runElection() {
   for (int i = 0; i < parties.size(); i++) {
     std::vector<Candidate *> partyMembers = parties[i].getPartyMembers();
     for (int j = 0; j < partyMembers.size(); j++) {
+      writeToAuditFile("Number: " + std::to_string(partyMembers[j]->getNumBallots()) + " Ballots added to " + parties[i].getPartyName() + " Party.\n" );
+
       parties[i].setNumBallots(parties[i].getNumBallots() +
                                partyMembers[j]->getNumBallots());
 
     }
   }
-
+  
   quota = numBallots / numSeats;
   writeToAuditFile("Quota per seat is: " + std::to_string(quota) + "\n");
+  writeToAuditFile("Test1");
+  writeToAuditFile("Test2");
   allocateSeats();
   findPartyWinners();
 }

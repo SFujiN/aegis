@@ -35,9 +35,9 @@ void VotingSystem::makeAuditFile() {
 }
 
 void VotingSystem::writeToAuditFile(std::string string) {
-  auditFile.open(auditfilename);
+  auditFile.open(auditfilename, std::ios::app);
   auditFile << string << std::endl;
-  auditFile.close();
+  auditFile.close();  
 }
 
 void VotingSystem::makeMediaFile(std::string string) {
