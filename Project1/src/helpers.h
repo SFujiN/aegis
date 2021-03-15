@@ -1,3 +1,6 @@
+/** \addtogroup helpers
+ *  @{
+ */
 /** @file helpers.h
  *
  *   @copyright 2021 Aegis, All rights reserved.
@@ -93,3 +96,5 @@ void printVec(std::vector<std::string> vec);
  * @return void
  */
 void printVecI(std::vector<int> vec);
+
+/** @}*/
