@@ -142,7 +142,9 @@ void OPL::displayResults() {
   std::cout << "\nWinners" << std::endl;
   printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
   writeToMediaFile("Winners:\n");
+  writeToAuditFile("Winners:\n");
   for (int i = 0; i < winners.size(); i++) {
+    writeToAuditFile("Name: " + winners[i].getName() + " Party: " + std::string(1,winners[i].getParty()) + " Votes: " + std::to_string(winners[i].getNumBallots()) + "\n");
     writeToMediaFile("Name: " + winners[i].getName() + " Party: " + std::string(1,winners[i].getParty()) + " Votes: " + std::to_string(winners[i].getNumBallots()) + "\n");
     printf("\t%-60s %-15c %-d\n", winners[i].getName().c_str(),
            winners[i].getParty(), winners[i].getNumBallots());
