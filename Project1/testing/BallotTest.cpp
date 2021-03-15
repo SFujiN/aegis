@@ -2,33 +2,22 @@
 #include "gtest/gtest.h"
 
 class BallotTest : public ::testing::Test {
-<<<<<<< HEAD
-public:
-    void SetUp() {
-        default = Ballot();
-         Bob = Candidate('I',5,"Bob");
-        Jane = Candidate('D',7,"Jane");
-        David = Candidate('L',1000,"Dave");
-        ballot1={Bob,John,Jane,David};
-    }
-=======
  public:
     BallotTest();
   void SetUp() {
     // ballot1 is: 3, 1, 2
     // ballot1 new order is: 2, 3, 1
-    Bob = Candidate('I', "Bob", 5);
+    Bob = Candidate('I', "Bob");
     candidates.push_back(Bob);
-    Jane = Candidate('D', "Jane", 7);
+    Jane = Candidate('D', "Jane");
     candidates.push_back(Jane);
-    David = Candidate('L', "Dave", 1000);
+    David = Candidate('L', "Dave");
     candidates.push_back(David);
     ballotCandidates.push_back(2);
     ballotCandidates.push_back(3);
     ballotCandidates.push_back(1);
     Ballot ballot1(ballotCandidates);
   }
->>>>>>> 8021105ff8706b04139d9a51cc54f08f6b3b2256
 
   void TearDown() {}
   // Candidate Norm;
