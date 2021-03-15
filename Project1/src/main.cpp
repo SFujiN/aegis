@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   std::fstream file;
   int candidateNum, seatNum, ballotNum;
   std::vector<std::string> candidateNames, rawBallotInfo;
-  VotingSystem *Aegis;
+  VotingSystem *Aegis = nullptr;
   std::cout << "Prototype: Aegis 0.0" << std::endl;
 
   if (argc != 2) {
