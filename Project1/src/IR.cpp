@@ -78,7 +78,7 @@ void IR::elimination() {
 
 Candidate IR::breakTie(Candidate a, Candidate b) {
   int random = rand() % 100;
-  if (random > 50) {
+  if (random >= 50) {
     return a;
   } else
     return b;
@@ -158,7 +158,7 @@ void IR::displayResults() {
            losers[i].getParty(), losers[i].getInitBallots());
     writeToMediaFile("Name: " + losers[i].getName() +
                      " Party: " + std::string(1, losers[i].getParty()) +
-                     " Votes: " + std::to_string(losers[i].getNumBallots()) +
+                     " Votes: " + std::to_string(losers[i].getInitBallots()) +
                      "\n");
   }
 }

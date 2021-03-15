@@ -1,7 +1,7 @@
 /**
- * @file Party.h
+ * @file Candidate.h
  *
- * @copyright 2020, All rights reserved.
+ * @copyright 2021, All rights reserved.
  */
 
 #ifndef CANDIDATE_H

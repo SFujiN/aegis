@@ -1,5 +1,15 @@
+/**
+ * @file VotingSystem.h
+ *
+ * @copyright 2021, All rights reserved.
+ */
+
 #ifndef VOTINGSYSTEM_H
 #define VOTINGSYSTEM_H
+
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
 
 #include <stdlib.h>
 
@@ -14,6 +24,10 @@
 #include "../src/Ballot.h"
 #include "../src/Candidate.h"
 #include "../src/Party.h"
+
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
 
 /**
  * @brief A class representing a generic Voting System to be used for running

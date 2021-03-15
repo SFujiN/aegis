@@ -1,6 +1,6 @@
 #ifndef OPL_H
 #define OPL_H
-// TODO: delete these and put in votingSystem
+
 #include <algorithm>
 #include <fstream>
 #include <sstream>
