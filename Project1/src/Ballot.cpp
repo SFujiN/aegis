@@ -1,4 +1,4 @@
-#include "Ballot.h"
+#include "../src/Ballot.h"
 
 Ballot::Ballot(std::vector<int> v1) : candidates(v1) {}
 

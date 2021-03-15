@@ -1,4 +1,4 @@
-#include "VotingSystem.h"
+#include "../src/VotingSystem.h"
 
 /* VotingSystem::VotingSystem(std::string type, int candidates, int seats,
                            int ballots)
@@ -12,40 +12,43 @@ int VotingSystem::getNumBallots() { return numBallots; }
 double VotingSystem::getTimeTaken() { return 0; }
 
 void VotingSystem::runElection() {
-  std::sort(candidates.begin(),candidates.end());
-  std::reverse(candidates.begin(),candidates.end());
+  std::sort(candidates.begin(), candidates.end());
+  std::reverse(candidates.begin(), candidates.end());
   displayResults();
 }
 
-void VotingSystem::displayResults(){}
+void VotingSystem::displayResults() {}
 
-void VotingSystem::setAuditFileName(){
-  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-  auditfilename = std::to_string(dtn.count())+".txt";
-}
+
 
 void VotingSystem::makeAuditFile() {
-   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-   auditFile.open(auditfilename);
-   auditFile.close();
-}
+  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+  auditfilename = "Audit" + std::to_string(dtn.count()) + ".txt";
 
-void VotingSystem::writeToAuditFile(std::string string) {
   auditFile.open(auditfilename);
-  auditFile << string << std::endl;
   auditFile.close();
 }
 
-void VotingSystem::makeMediaFile(std::string string) { 
-  mediaFile.open("Media" + auditfilename);
-  mediaFile << string << std::endl;
-  mediaFile.close();
-
+void VotingSystem::writeToAuditFile(std::string string) {
+  auditFile.open(auditfilename, std::ios::app);
+  auditFile << string << std::endl;
+  auditFile.close();  
 }
 
-void VotingSystem::printEverything() {}
+void VotingSystem::makeMediaFile() {
+  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+  mediafilename = "Media" + std::to_string(dtn.count()) + ".txt";
+  mediaFile.open(mediafilename);
+  mediaFile.close();
+}
+
+void VotingSystem::writeToMediaFile(std::string string) {
+  mediaFile.open(mediafilename, std::ios::app);
+  mediaFile << string << std::endl;
+  mediaFile.close();  
+}
 
 void VotingSystem::addCandidate(Candidate candidate) {
   candidates.push_back(candidate);
@@ -67,8 +70,8 @@ std::vector<Party> &VotingSystem::getParties() { return parties; }
 
 bool VotingSystem::partyExists(char party) {
   for (Party curr : parties) {
-  //std::cout << "partyExists Parties: " << parties[0].getPartyName() << std::endl;
-  //for (int i = 0; i < parties.size(); i++) {
+    // std::cout << "partyExists Parties: " << parties[0].getPartyName() <<
+    // std::endl; for (int i = 0; i < parties.size(); i++) {
     if (curr.getPartyName() == party) {
       return true;
     }

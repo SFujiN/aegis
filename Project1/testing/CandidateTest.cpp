@@ -1,36 +1,72 @@
-#include "gtest/gtest.h"
-#include "Ballot.h"
-#include"Candidate.h"
 #include <vector>
 
+#include "../src/Ballot.cpp"
+#include "../src/Candidate.cpp"
+#include "../src/OPL.cpp"
+#include "../src/Party.cpp"
+#include "../src/VotingSystem.cpp"
 
-class CandidateTest : public ::testing::Test {
-public:
-    void SetUp() {
-        
-        Bob = Candidate(“I”,5,”Bob”);
-        Jane = Candidate(“D”,7,”Jane”);
-        David = Candidate(“L”,1000,”Dave”);
+using namespace std;
+    Candidate Bob = Candidate('I', "Bob");
+    
+    
+    
 
-       
-    }
 
-protected:
-    Candidate default;
-    Candidate Bob;
-    Candidate Jane;
-    Candidate David;
-};
+int main(int argc, char *argv[]) {
+std::vector<int> ballot;
+ballot.push_back(1);
+///////////////////////////////////////////////////////////////////////////
+// TESTING FOR getName
+//////////////////////////////////////////////////////////////////////////
 
-TEST_F (CandidateTest, getPartyTest) {
-    EXPECT_EQ(Bob.getParty(),"I") << "GetParty has errors";
-    EXPECT_EQ(Jane.getParty(),"D") << "GetParty has errors";
-    EXPECT_EQ(David.getParty(),"L") << "GetParty has errors";
-   
+if(Bob.getName() == "Bob"){
+  cout << "True" << endl;
 }
+  else{
+    cout << "False, getName went wrong." << endl;
+  }
 
-TEST_F (CandidateTest, getNumBallotsTest) { 
-    EXPECT_EQ(Bob.getBallots(),5) << "GetBallots has errors";
-    EXPECT_EQ(Jane.getBallots(),7) << "GetBallots has errors";
-    EXPECT_EQ(David.getBallots(),1000) << "GetBallots has errors";
+///////////////////////////////////////////////////////////////////////////
+// TESTING FOR getParty
+//////////////////////////////////////////////////////////////////////////
+
+if(Bob.getParty() == 'I'){
+  cout << "True" << endl;
 }
+  else{
+    cout << "False, getParty went wrong." << endl;
+  }
+
+///////////////////////////////////////////////////////////////////////////
+// TESTING BALLOT USAGE
+//////////////////////////////////////////////////////////////////////////
+Bob.addBallot(ballot);
+
+if(Bob.getNumBallots() == 1){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getNumBallots or addBallot went wrong." << endl;
+  }
+
+if(Bob.getBallots()[0].getCurrBallot() == ballot[1]){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getCurrBallot went wrong." << endl;
+  }
+
+Bob.setInitBallots(1);
+if(Bob.getInitBallots() == 1){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getInitBallots went wrong." << endl;
+  }
+
+
+}//end main
+
+
+

@@ -1,59 +1,93 @@
-#include "gtest/gtest.h"
-#include "Candidate.h"
-#include "Party.h"
 #include <vector>
 
+#include "../src/Ballot.cpp"
+#include "../src/Candidate.cpp"
+#include "../src/OPL.cpp"
+#include "../src/Party.cpp"
+#include "../src/VotingSystem.cpp"
 
-class CandidateTest : public ::testing::Test {
-public:
-    void SetUp() {
-        
-        Bob = Candidate('I',"Bob",5);
-        Jane = Candidate('D',"Jane",7);
-        David = Candidate('L',"Dave",1000);
+using namespace std;
+Party test = Party('P');
+Candidate Bob = Candidate('I', "Bob");
+int main(int argc, char *argv[]) {
 
-        Party All();
-        All.setNumBallots(100);
-        All.setRemainder(5);
-        All.setSeatsWon(3);
-        All.addCandidate(Bob);
-        All.addCandidate(Jane);
-        All.addCandidate(David);
-    
-       
-    }
+///////////////////////////////////////////////////////////////////////////
+// TESTING FOR getPartyName
+//////////////////////////////////////////////////////////////////////////
 
-protected:
-    Candidate default;
-    Candidate Bob;
-    Candidate Jane;
-    Candidate David;
-    Party All;
-};
-
-TEST_F (PartyTest, getNumBallotTest) {
-    
-    EXPECT_EQ(All.getNumBallots(),100) << "getNumBallot has errors";
-   
+if(test.getPartyName() == 'P'){
+  cout << "True" << endl;
 }
+  else{
+    cout << "False, getPartyName went wrong." << endl;
+  }
 
-TEST_F (PartyTest, getRemainderTest) {
-    
-    EXPECT_EQ(All.getRemainder(),5) << "getRemainder has errors";
-   
-}
 
-TEST_F (PartyTest, getSeatsWonTest) {
-    
-    EXPECT_EQ(All.getSeatsWon(),3) << "getSeatsWon has errors";
-   
-}
 
-TEST_F (PartyTest, getPartyMembers) {
-    std::vector<Candidate> test1 = All.getPartyMembers();
-    EXPECT_EQ(test1[0],Bob) << "Candidate Vector has errors";
-    EXPECT_EQ(test1[1],Jane) << "Candidate Vector has errors";
-    EXPECT_EQ(test1[2],David)<< "Candidate Vector has errors";
-   
+///////////////////////////////////////////////////////////////////////////
+// TESTING getSeatsWon
+//////////////////////////////////////////////////////////////////////////
+test.setSeatsWon(10);
+if(test.getSeatsWon() == 10){
+  cout << "True" << endl;
 }
+  else{
+    cout << "False, getSeatsWon went wrong." << endl;
+  }
+  test.setSeatsWon(20);
+if(test.getSeatsWon() == 20){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getSeatsWon went wrong." << endl;
+  }
+
+///////////////////////////////////////////////////////////////////////////
+// TESTING getRemainder
+//////////////////////////////////////////////////////////////////////////
+test.setRemainder(7);
+if(test.getRemainder() == 7){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getRemainder went wrong." << endl;
+  }
+test.setRemainder(-1);
+if(test.getRemainder() == -1){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getRemainder went wrong." << endl;
+  }
+
+///////////////////////////////////////////////////////////////////////////
+// TESTING getPartyMembers
+//////////////////////////////////////////////////////////////////////////
+std::vector<int> ballot;
+ballot.push_back(1);
+Bob.addBallot(ballot);
+
+test.addCandidate(&Bob);
+if(test.getPartyMembers()[0] == &Bob){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getPartyMembers went wrong." << endl;
+  }
+
+///////////////////////////////////////////////////////////////////////////
+// TESTING FOR getNumBallots
+//////////////////////////////////////////////////////////////////////////
+
+
+if(test.getNumBallots() == 1){
+  cout << "True" << endl;
+}
+  else{
+    cout << "False, getNumBallots went wrong." << endl;
+  }
+
+}//end main
+
+
 

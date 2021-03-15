@@ -1,4 +1,4 @@
-#include "Candidate.h"
+#include "../src/Candidate.h"
 
 Candidate::Candidate(char partyLetter, std::string candidateName) : party(partyLetter), name(candidateName) { status = true; }
 

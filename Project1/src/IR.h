@@ -10,8 +10,17 @@
  * Includes
  ******************************************************************************/
 
-#include "VotingSystem.h"
+#include "../src/VotingSystem.h"
 
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
+
+/**
+ * @brief A class representing the IR Voting System, used to run an IR
+ * election results.
+ *
+ */
 class IR : public VotingSystem {
  public:
   /**
@@ -71,7 +80,7 @@ class IR : public VotingSystem {
   void checkIfOneCand();
 
  private:
-  Candidate* elim; ///< Holds the current candidate to be eliminated.
+  Candidate* elim;  ///< Holds the current candidate to be eliminated.
 };
 
 #endif

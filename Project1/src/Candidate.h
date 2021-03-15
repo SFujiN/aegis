@@ -1,7 +1,7 @@
 /**
- * @file Party.h
+ * @file Candidate.h
  *
- * @copyright 2020, All rights reserved.
+ * @copyright 2021 Aegis, All rights reserved.
  */
 
 #ifndef CANDIDATE_H
@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-#include "Ballot.h"
+#include "../src/Ballot.h"
 
 /*******************************************************************************
  * Class Definitions

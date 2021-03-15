@@ -4,3 +4,7 @@ Aegis
 CMake*
 /Project1/testing/Makefile
 *.json
+*.txt
+html/
+latex/
+

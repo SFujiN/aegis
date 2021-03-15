@@ -4,16 +4,16 @@
 // #include <string>
 // #include <vector>
 
-#include "OPL.h"
-#include "IR.h"
-#include "helpers.h"
+#include "../src/OPL.h"
+#include "../src/IR.h"
+#include "../src/helpers.h"
 
 int main(int argc, char *argv[]) {
   std::string fileName, fileContent, electionType, line;
   std::fstream file;
   int candidateNum, seatNum, ballotNum;
   std::vector<std::string> candidateNames, rawBallotInfo;
-  VotingSystem *Aegis;
+  VotingSystem *Aegis = nullptr;
   std::cout << "Prototype: Aegis 0.0" << std::endl;
 
   if (argc != 2) {
@@ -119,7 +119,9 @@ int main(int argc, char *argv[]) {
       // printVec(rawBallotInfo);
     }
 
-    delete Aegis;
+    if (Aegis != nullptr) {
+      delete Aegis;
+    }
 
     file.close();
   }

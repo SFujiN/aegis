@@ -1,4 +1,4 @@
-#include "helpers.h"
+#include "../src/helpers.h"
 
 int OPLBallotToIndex(std::string ballot) { return ballot.find('1'); }
 

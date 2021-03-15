@@ -1,4 +1,4 @@
-#include "Party.h"
+#include "../src/Party.h"
 
 Party::Party(char p) : name(p) {}
 
