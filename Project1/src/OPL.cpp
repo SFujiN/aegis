@@ -35,6 +35,7 @@ void OPL::sortByRemainder() {
     Party key = parties[i];
     j = i - 1;
     while (j >= 0 && parties[j].getRemainder() < key.getRemainder()) {
+      std::cout << std::string(1,parties[j].getPartyName()) + " swaps with " + std::string(1,key.getPartyName())+ "\n" << std::endl;
       writeToAuditFile(std::string(1,parties[j].getPartyName()) + " swaps with " + std::string(1,key.getPartyName())+ "\n");
       parties[j + 1] = parties[j];
       j = j - 1;
@@ -54,15 +55,15 @@ void OPL::allocateSeats() {
       numSeats -= seats;
       currParty.setRemainder(currParty.getNumBallots() % quota);
       
-      writeToAuditFile(a + " gets " +std::to_string(seats) + " seats and the remainder is " +std::to_string(currParty.getRemainder()));
+      writeToAuditFile(a + " gets " +std::to_string(seats) + " seats and the remainder is " +std::to_string(currParty.getRemainder())+ "\n");
     } else if (currParty.getPartyMembers().size() == seats) {
       numSeats -= seats;
       currParty.setRemainder(0);
-      writeToAuditFile(a + " gets " +std::to_string(seats) + " seats and the remainder is 0");
+      writeToAuditFile(a + " gets " +std::to_string(seats) + " seats and the remainder is 0 \n");
     } else {
       numSeats -= currParty.getPartyMembers().size();
       currParty.setRemainder(0);
-      writeToAuditFile(a + " gets " +std::to_string(currParty.getPartyMembers().size()) + " seats and the remainder is 0");
+      writeToAuditFile(a + " gets " + std::to_string(currParty.getPartyMembers().size()) + " seats and the remainder is 0 \n");
     }
     currParty.setSeatsWon(seats);
   }  // For loop end
@@ -71,9 +72,10 @@ void OPL::allocateSeats() {
   int i = 0;
   while (numSeats != 0) {
     parties[i].setSeatsWon(parties[i].getSeatsWon() + 1);
+    writeToAuditFile(std::string(1,parties[i].getPartyName()) + " gets another seat and has a total of " + std::to_string(parties[i].getSeatsWon()) + " seats.");
     i++;
     numSeats--;
-    writeToAuditFile(parties[i].getPartyName() + " gets another seat and has a total of" + std::to_string(parties[i].getSeatsWon()) + "seats.");
+    
   }
 }
 
