@@ -9,26 +9,40 @@ IR::IR(std::string type, int candidates, int seats, int ballots) {
 
 void IR::findWinner() {
   elim = &candidates[0];
+  writeToAuditFile("Checking for a majority.\n");
   if ((elim->getNumBallots() / numBallots > 0.5)) {  // Checking for over 50%
+    writeToAuditFile(elim->getName() +
+                     " has majority and has won the election.\n");
     addWinners(*elim);
   }
+
   for (int i = 1; i < numCandidates; i++) {
     if ((candidates[i].getNumBallots() / numBallots >
          0.5)) {  // Checking for over 50%
+      writeToAuditFile(candidates[i].getName() +
+                       " has majority and has won the election.\n");
       addWinners(candidates[i]);
     }
     if ((candidates[i].getNumBallots() < elim->getNumBallots()) &&
         candidates[i].getNumBallots() != 0) {
+      writeToAuditFile(candidates[i].getName() + "has less ballots than " +
+                       elim->getName() +
+                       " and currently has the lowest amount of ballots.\n");
       elim = &candidates[i];
+
     } else if (candidates[i].getNumBallots() == elim->getNumBallots() &&
                candidates[i].getNumBallots() != 0) {
       *elim = breakTie(candidates[i], *elim);
+      writeToAuditFile(
+          elim->getName() +
+          " has lost the tie and is now in line to get eliminated.\n");
     }
   }
 }
 
 void IR::elimination() {
   for (int i = elim->getNumBallots() - 1; i >= 0; i--) {
+    writeToAuditFile("Incremented a ballot.\n");
     elim->getBallots()
         .at(i)
         .incrCurrent();  // Increment every ballot from that candidate
@@ -36,11 +50,16 @@ void IR::elimination() {
     while (ballot.getCurrBallotIndex() >= 0 &&
            (candidates[ballot.getCurrBallotIndex()].getNumBallots() == 0) &&
            (ballot.getCurrBallot() < candidates.size() - 1)) {
+      writeToAuditFile(
+          candidates[ballot.getCurrBallotIndex()].getName() +
+          " was eliminated earlier and this ballot will be incremented.\n");
       ballot.incrCurrent();
     }
 
     if (ballot.getCurrBallotIndex() >= 0) {
       candidates[ballot.getCurrBallotIndex()].addBallot(ballot);
+      writeToAuditFile(candidates[ballot.getCurrBallotIndex()].getName() +
+                       " has gained a ballot.\n");
     }
     // Inside each ballot, getCurrBallotIndex takes in the current index of the
     // Ballot and returns The value corresponding to the next highest voted
@@ -54,6 +73,7 @@ void IR::elimination() {
   }
   std::vector<Ballot> noBallots{};
   elim->setBallots(noBallots);
+  writeToAuditFile(elim->getName() + " has been eliminated.\n");
 }
 
 Candidate IR::breakTie(Candidate a, Candidate b) {
@@ -74,12 +94,18 @@ void IR::checkIfOneCand() {
     }
   }
   if (!flag) {
+    writeToAuditFile("There is only one candidate left. " +
+                     candidates[index].getName() + " has won!");
     addWinners(candidates[index]);
   }
 }
 
 void IR::runElection() {
+  makeAuditFile();
   for (int j = 0; j < candidates.size(); j++) {
+    writeToAuditFile("Initialization: " + candidates[j].getName() + " has " +
+                     std::to_string(candidates[j].getNumBallots()) +
+                     " ballots.\n");
     candidates[j].setInitBallots(candidates[j].getNumBallots());
   }
   findWinner();
@@ -90,9 +116,12 @@ void IR::runElection() {
   }
   for (int i = 0; i < candidates.size(); i++) {
     if (candidates[i].getName() != winners[0].getName()) {
+      writeToAuditFile(candidates[i].getName() +
+                       " has been added to the losers.");
       addLosers(candidates[i]);
     }
   }
+  makeMediaFile();
 }
 
 void IR::printCandidateInfo() {
@@ -105,20 +134,31 @@ void IR::printCandidateInfo() {
 
 void IR::displayResults() {
   std::cout << "General Election Information" << std::endl;
-  printf("\tElection Type: OPL\n");
+  printf("\tElection Type: IR\n");
   printf("\tTotal Ballots: %d\n", numBallots);
+  writeToMediaFile("Election Type: IR\nTotal Ballots:" + std::to_string(numBallots) + "\n");
 
-  std::cout << "\nWinners" << std::endl;
+  std::cout << "\nWinner" << std::endl;
+  writeToMediaFile("Winner\n");
   printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
   for (int i = 0; i < winners.size(); i++) {
     printf("\t%-60s %-15c %-d\n", winners[i].getName().c_str(),
            winners[i].getParty(), winners[i].getInitBallots());
+    writeToMediaFile("Name: " + winners[i].getName() +
+                     " Party: " + std::string(1, winners[i].getParty()) +
+                     " Votes: " + std::to_string(winners[i].getNumBallots()) +
+                     "\n");
   }
 
   std::cout << "\nLosers\n" << std::endl;
+  writeToMediaFile("Loser(s)\n");
   printf("\t%-60s %-15s %-s", "Name", "Party", "Number of Ballots\n");
   for (int i = 0; i < losers.size(); i++) {
     printf("\t%-60s %-15c %-d\n", losers[i].getName().c_str(),
            losers[i].getParty(), losers[i].getInitBallots());
+    writeToMediaFile("Name: " + losers[i].getName() +
+                     " Party: " + std::string(1, losers[i].getParty()) +
+                     " Votes: " + std::to_string(losers[i].getNumBallots()) +
+                     "\n");
   }
 }
