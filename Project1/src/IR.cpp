@@ -136,7 +136,7 @@ void IR::displayResults() {
   std::cout << "General Election Information" << std::endl;
   printf("\tElection Type: IR\n");
   printf("\tTotal Ballots: %d\n", numBallots);
-  writeToMediaFile("Election Type: OPL\nTotal Ballots:" + std::to_string(numBallots) + "\n");
+  writeToMediaFile("Election Type: IR\nTotal Ballots:" + std::to_string(numBallots) + "\n");
 
   std::cout << "\nWinner" << std::endl;
   writeToMediaFile("Winner\n");
