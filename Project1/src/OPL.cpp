@@ -1,4 +1,4 @@
-#include "OPL.h"
+#include "../src/OPL.h"
 
 OPL::OPL(std::string type, int candidates, int seats, int ballots) {
   electionType = type;

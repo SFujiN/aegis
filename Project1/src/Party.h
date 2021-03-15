@@ -13,7 +13,7 @@
 
 #include <vector>
 
-#include "Candidate.h"
+#include "../src/Candidate.h"
 
 /*******************************************************************************
  * Class Definitions

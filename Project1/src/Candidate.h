@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-#include "Ballot.h"
+#include "../src/Ballot.h"
 
 /*******************************************************************************
  * Class Definitions

@@ -1,4 +1,4 @@
-#include "IR.h"
+#include "../src/IR.h"
 
 IR::IR(std::string type, int candidates, int seats, int ballots) {
   electionType = type;

@@ -4,9 +4,9 @@
 // #include <string>
 // #include <vector>
 
-#include "OPL.h"
-#include "IR.h"
-#include "helpers.h"
+#include "../src/OPL.h"
+#include "../src/IR.h"
+#include "../src/helpers.h"
 
 int main(int argc, char *argv[]) {
   std::string fileName, fileContent, electionType, line;

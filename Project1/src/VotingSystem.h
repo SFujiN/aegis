@@ -11,9 +11,9 @@
 #include <string>
 #include <vector>
 
-#include "Ballot.h"
-#include "Candidate.h"
-#include "Party.h"
+#include "../src/Ballot.h"
+#include "../src/Candidate.h"
+#include "../src/Party.h"
 
 /**
  * @brief A class representing a generic Voting System to be used for running

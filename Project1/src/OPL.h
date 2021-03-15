@@ -6,8 +6,8 @@
 #include <sstream>
 #include <vector>
 
-#include "Party.h"
-#include "VotingSystem.h"
+#include "../src/Party.h"
+#include "../src/VotingSystem.h"
 
 /**
  * @brief A class representing the OPL Voting System, used to run an OPL

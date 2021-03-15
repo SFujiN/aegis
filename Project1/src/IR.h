@@ -10,7 +10,7 @@
  * Includes
  ******************************************************************************/
 
-#include "VotingSystem.h"
+#include "../src/VotingSystem.h"
 
 /**
  * @brief A class representing the IR Voting System, used to run an IR

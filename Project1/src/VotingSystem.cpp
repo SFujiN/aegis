@@ -1,4 +1,4 @@
-#include "VotingSystem.h"
+#include "../src/VotingSystem.h"
 
 /* VotingSystem::VotingSystem(std::string type, int candidates, int seats,
                            int ballots)
