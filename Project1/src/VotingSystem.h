@@ -90,7 +90,8 @@ class VotingSystem {
  * @return void.
 
 */
-  void makeMediaFile(std::string string);
+  void makeMediaFile();
+  void writeToMediaFile(std::string string);
   void printEverything();
   void addCandidate(Candidate candidate);
 
@@ -162,7 +163,7 @@ class VotingSystem {
 
 */
 
-  void setAuditFileName();
+  
 
  protected:
   std::string electionType; ///< Type of election being held
@@ -175,6 +176,7 @@ class VotingSystem {
   std::ofstream auditFile; ///< 
   std::string auditfilename; ///< 
   std::ofstream mediaFile; ///< 
+  std::string mediafilename; ///< 
 
   std::vector<Candidate> winners; ///< vector to hold all winners
   std::vector<Candidate> losers; ///< vector to hold all losers

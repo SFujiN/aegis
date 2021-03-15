@@ -19,16 +19,12 @@ void VotingSystem::runElection() {
 
 void VotingSystem::displayResults() {}
 
-void VotingSystem::setAuditFileName() {
-  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-  auditfilename = std::to_string(dtn.count()) + ".txt";
-}
+
 
 void VotingSystem::makeAuditFile() {
   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-  auditfilename = std::to_string(dtn.count()) + ".txt";
+  auditfilename = "Audit" + std::to_string(dtn.count()) + ".txt";
 
   auditFile.open(auditfilename);
   auditFile.close();
@@ -40,10 +36,18 @@ void VotingSystem::writeToAuditFile(std::string string) {
   auditFile.close();  
 }
 
-void VotingSystem::makeMediaFile(std::string string) {
-  mediaFile.open("Media" + auditfilename);
-  mediaFile << string << std::endl;
+void VotingSystem::makeMediaFile() {
+  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+  mediafilename = "Media" + std::to_string(dtn.count()) + ".txt";
+  mediaFile.open(mediafilename);
   mediaFile.close();
+}
+
+void VotingSystem::writeToMediaFile(std::string string) {
+  mediaFile.open(mediafilename, std::ios::app);
+  mediaFile << string << std::endl;
+  mediaFile.close();  
 }
 
 void VotingSystem::printEverything() {}
