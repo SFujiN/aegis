@@ -50,8 +50,6 @@ void VotingSystem::writeToMediaFile(std::string string) {
   mediaFile.close();  
 }
 
-void VotingSystem::printEverything() {}
-
 void VotingSystem::addCandidate(Candidate candidate) {
   candidates.push_back(candidate);
 }

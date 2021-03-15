@@ -105,8 +105,6 @@ class VotingSystem {
    */
   void writeToMediaFile(std::string string);
 
-  void printEverything();
-
   /**
    * @brief Adds a Candidate to candidates vector.
    *
