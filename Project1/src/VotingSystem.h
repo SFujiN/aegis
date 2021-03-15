@@ -20,36 +20,39 @@ class VotingSystem {
   // VotingSystem(std::string type, int candidates, int seats, int ballots);
 
   /**
- * @brief Constructor for the voting system.
- *
- * Creates a voting system with its type, the number of candidates, seats, and
- ballots.
- *
-
-*/
-  int getNumBallots();
-  /**
    * @brief Returns the number of ballots in the system..
    *
    * Returns the number of ballots in the current system which is a parameter
    * given when created.
    *
    * @return int.
-
-  */
-  double getTimeTaken();
+   */
+  int getNumBallots();
 
   /**
- * @brief Returns the time taken.
- *
- * Returns the amount needed to run the entire program.
- *
- * @return int.
+   * @brief Returns the time taken.
+   *
+   * Returns the amount needed to run the entire program.
+   *
+   * @return int.
+   */
+  double getTimeTaken();
 
-*/
   // Candidate breakTie(std::vector<Candidate>);
+  /**
+   * @brief Adds a winning candidate to the winners vector.
+   * 
+   * @return void.
+   */
   void addWinners(Candidate candidate);
+
+  /**
+   * @brief Adds a losing candidate to the losers vector.
+   * 
+   * @return void.
+   */
   void addLosers(Candidate candidate);
+
   /**
    * @brief Will be used to run elections.
    *
@@ -74,22 +77,34 @@ class VotingSystem {
    * Creates a new file that will be used as an audit for the election
    *
    * @return void.
-
   */
   void makeAuditFile();
 
   /**
    * @brief Writes to the audit file.
    *
-   *
-   *  @param[in] string What will be written into the audit file.
+   * @param[in] string What will be written into the audit file.
    *
    * @return void.
    */
   void writeToAuditFile(std::string string);
 
+  /**
+   * @brief Makes a media file to be written to.
+   * 
+   * @return void.
+   */
   void makeMediaFile();
+
+  /**
+   * @brief Writes a message to the media file.
+   * 
+   * @param string What will be written into the media file.
+   * 
+   * @return void.
+   */
   void writeToMediaFile(std::string string);
+
   void printEverything();
 
   /**
