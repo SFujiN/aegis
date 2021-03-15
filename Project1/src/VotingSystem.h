@@ -37,6 +37,17 @@ class VotingSystem {
    * @return int.
 
   */
+
+  /**
+     * @brief Returns the winner vector.
+     *
+     * Returns the vector containing all the winners of this election.
+     *
+     * @return std::vector<Candidate>
+
+    */
+  std::vector<Candidate> getWinners() { return winners; };
+
   double getTimeTaken();
 
   /**
@@ -95,14 +106,15 @@ class VotingSystem {
   void addCandidate(Candidate candidate);
 
   /**
- * @brief Adds a Candidate to candidates vector.
- *
- * @param[in] candidate the candidate that will be added
- *
- * Takes in a candidate and then adds the candidate to the vector of candidates.
- *
- * @return void.
-*/
+   * @brief Adds a Candidate to candidates vector.
+   *
+   * @param[in] candidate the candidate that will be added
+   *
+   * Takes in a candidate and then adds the candidate to the vector of
+   * candidates.
+   *
+   * @return void.
+   */
 
   void addParty(Party party);
   /**
@@ -165,18 +177,21 @@ class VotingSystem {
   void setAuditFileName();
 
  protected:
-  std::string electionType; ///< Type of election being held
-  int numCandidates; ///< holds the number of Candidates running for seats
-  int numSeats; ///< holds the number of seats up for election
-  int numBallots; ///< holds the number of ballots to be processed
-  double timeTaken; ///< holds the amount of time taken by the program to execute
-  std::vector<Candidate> candidates; ///< vector to hold candidates running for a seat
-  std::vector<Party> parties; ///< vector to hold all parties involved with the election
-  std::ofstream auditFile; ///< 
-  std::string auditfilename; ///< 
-  std::ofstream mediaFile; ///< 
+  std::string electionType;  ///< Type of election being held
+  int numCandidates;  ///< holds the number of Candidates running for seats
+  int numSeats;       ///< holds the number of seats up for election
+  int numBallots;     ///< holds the number of ballots to be processed
+  double
+      timeTaken;  ///< holds the amount of time taken by the program to execute
+  std::vector<Candidate>
+      candidates;  ///< vector to hold candidates running for a seat
+  std::vector<Party>
+      parties;  ///< vector to hold all parties involved with the election
+  std::ofstream auditFile;    ///<
+  std::string auditfilename;  ///<
+  std::ofstream mediaFile;    ///<
 
-  std::vector<Candidate> winners; ///< vector to hold all winners
-  std::vector<Candidate> losers; ///< vector to hold all losers
+  std::vector<Candidate> winners;  ///< vector to hold all winners
+  std::vector<Candidate> losers;   ///< vector to hold all losers
 };
 #endif
