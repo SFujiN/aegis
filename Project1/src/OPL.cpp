@@ -79,6 +79,7 @@ void OPL::findPartyWinners() {
 }
 
 void OPL::runElection() {
+  makeAuditFile();
   // iterate through all parties and add up ballots
   for (int i = 0; i < parties.size(); i++) {
     std::vector<Candidate *> partyMembers = parties[i].getPartyMembers();
@@ -90,6 +91,7 @@ void OPL::runElection() {
   }
 
   quota = numBallots / numSeats;
+  writeToAuditFile("Quota per seat is: " + std::to_string(quota) + "\n");
   allocateSeats();
   findPartyWinners();
 }

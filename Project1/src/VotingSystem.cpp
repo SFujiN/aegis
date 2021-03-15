@@ -12,24 +12,26 @@ int VotingSystem::getNumBallots() { return numBallots; }
 double VotingSystem::getTimeTaken() { return 0; }
 
 void VotingSystem::runElection() {
-  std::sort(candidates.begin(),candidates.end());
-  std::reverse(candidates.begin(),candidates.end());
+  std::sort(candidates.begin(), candidates.end());
+  std::reverse(candidates.begin(), candidates.end());
   displayResults();
 }
 
-void VotingSystem::displayResults(){}
+void VotingSystem::displayResults() {}
 
-void VotingSystem::setAuditFileName(){
+void VotingSystem::setAuditFileName() {
   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-  auditfilename = std::to_string(dtn.count())+".txt";
+  auditfilename = std::to_string(dtn.count()) + ".txt";
 }
 
 void VotingSystem::makeAuditFile() {
-   std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-   std::chrono::system_clock::duration dtn = tp.time_since_epoch();
-   auditFile.open(auditfilename);
-   auditFile.close();
+  std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+  std::chrono::system_clock::duration dtn = tp.time_since_epoch();
+  auditfilename = std::to_string(dtn.count()) + ".txt";
+
+  auditFile.open(auditfilename);
+  auditFile.close();
 }
 
 void VotingSystem::writeToAuditFile(std::string string) {
@@ -38,11 +40,10 @@ void VotingSystem::writeToAuditFile(std::string string) {
   auditFile.close();
 }
 
-void VotingSystem::makeMediaFile(std::string string) { 
+void VotingSystem::makeMediaFile(std::string string) {
   mediaFile.open("Media" + auditfilename);
   mediaFile << string << std::endl;
   mediaFile.close();
-
 }
 
 void VotingSystem::printEverything() {}
@@ -67,8 +68,8 @@ std::vector<Party> &VotingSystem::getParties() { return parties; }
 
 bool VotingSystem::partyExists(char party) {
   for (Party curr : parties) {
-  //std::cout << "partyExists Parties: " << parties[0].getPartyName() << std::endl;
-  //for (int i = 0; i < parties.size(); i++) {
+    // std::cout << "partyExists Parties: " << parties[0].getPartyName() <<
+    // std::endl; for (int i = 0; i < parties.size(); i++) {
     if (curr.getPartyName() == party) {
       return true;
     }
