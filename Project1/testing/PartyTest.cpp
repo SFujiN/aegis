@@ -127,3 +127,6 @@ int main(int argc, char *argv[]) {
     // remove this function? hard to check since getNumBallots COUNTS ballots
 from each candidates opposed to just returning numBallots
  */
+/* TODO
+- calculateNumBallots() for current getBallots(); add another to test for setNumBallots()
+ */
