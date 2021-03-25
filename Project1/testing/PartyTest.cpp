@@ -71,11 +71,11 @@ TEST_F(PartyTest, sortByVotes1) {
   D->sortByVotes();
   std::vector<Candidate *> candidates = D->getPartyMembers();
   for (int i = 0; i < candidates.size() - 1; i++) {
-    EXPECT_TRUE(candidates.at(i) < candidates.at(i + 1));
+    EXPECT_TRUE(candidates.at(i)->getNumBallots() >= candidates.at(i + 1)->getNumBallots());
   }
 }
 // already in reverse sorted order
-TEST_F(PartyTest, sortByVotesPreReverseOrder) {
+TEST_F(PartyTest, sortByVotesPreReverseOrder1) {
   Party D2('D');
   Candidate *Derrick3 = new Candidate('D', "Derrick3");
   std::vector<int> i1{1, 0, 0};
@@ -93,12 +93,13 @@ TEST_F(PartyTest, sortByVotesPreReverseOrder) {
   std::vector<Candidate *> candidates = D2.getPartyMembers();
 
   for (int i = 0; i < candidates.size() - 1; i++) {
-    EXPECT_TRUE(candidates.at(i) < candidates.at(i + 1));
+    EXPECT_TRUE(candidates.at(i)->getNumBallots() >= candidates.at(i + 1)->getNumBallots());
   }
 }
-/* TEST_F(PartyTest, setNumBallots1) {
-  D.setNum EXPECT_EQ(10, D->getNumBallots());
-} */
+TEST_F(PartyTest, setNumBallots1) {
+  D->setNumBallots(10);
+  EXPECT_EQ(10, D->getVariableNumBallots());
+}
 TEST_F(PartyTest, setSeatsWon1) {
   D->setSeatsWon(5);
   EXPECT_EQ(5, D->getSeatsWon());
@@ -121,12 +122,14 @@ int main(int argc, char *argv[]) {
 /* CHANGES
 - overloaded == operator in Party.h and Party.cpp
 - overloaded == operator in Candidate.h and Candidate.cpp
+- int getVariableNumBallots() in Party.h
 */
+
 /* QUESTIONS
 - setNumBallots test
     // remove this function? hard to check since getNumBallots COUNTS ballots
 from each candidates opposed to just returning numBallots
  */
+
 /* TODO
-- calculateNumBallots() for current getBallots(); add another to test for setNumBallots()
  */
