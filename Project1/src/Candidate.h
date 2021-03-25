@@ -73,6 +73,16 @@ class Candidate {
    */
   bool operator<(Candidate& r);
   /**
+   * @brief Overload operator for comparisons between Candidates' names, party,
+   * and number of ballots
+   *
+   * @param r, represents the Candidate to compare "this" to.
+   *
+   * @return Returns true or false to represent if candidate are equal to one
+   * another
+   */
+  bool operator==(Candidate& r);
+  /**
    * @brief Method to get the number of ballots the Candidate started with.
    *
    * @return Returns the number of ballots the Candidate started with.
@@ -103,7 +113,8 @@ class Candidate {
                        ///< still in the running. Defaults to true.
   std::vector<Ballot> ballots;  ///< A vector of Ballots that holds all ballots
                                 ///< currently voting for this Candidate.
-  int initBallots = 0; ///< Number of ballots that the Candiate starts with. Defaults to 0.
+  int initBallots =
+      0;  ///< Number of ballots that the Candiate starts with. Defaults to 0.
 };
 
 #endif

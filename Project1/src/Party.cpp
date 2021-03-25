@@ -40,3 +40,7 @@ void Party::setRemainder(int num) { remainder = num; }
 void Party::addCandidate(Candidate *candidate) {
   partyMembers.push_back(candidate);
 }
+
+bool Party::operator==(Party& r) {
+    return getPartyName() == r.getPartyName();
+}

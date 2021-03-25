@@ -45,6 +45,13 @@ class Party {
    * @return Returns the number of ballots.
    */
   int getNumBallots();
+  /**
+   * @brief Method to return the variable numBallots that belong to the Party.
+   * Used for testing purposes.
+   *
+   * @return Returns the variable numBallots.
+   */
+  int getVariableNumBallots() { return numBallots; }
 
   /**
    * @brief Method to return the number of seats the Party has won.
@@ -68,7 +75,8 @@ class Party {
    */
   std::vector<Candidate *> getPartyMembers();
   /**
-   * @brief Sorts partyMembers vector by the number of votes each candidate has.
+   * @brief Sorts partyMembers vector by the number of votes each candidate has
+   * from most to least.
    */
   void sortByVotes();
   /**
@@ -97,6 +105,15 @@ class Party {
    * vector.
    */
   void addCandidate(Candidate *candidate);
+  /**
+   * @brief Overload operator for equality between two Party's names.
+   *
+   * @param r, represents the Party to compare "this" to.
+   *
+   * @return Returns true or false to represent if the two Party instances
+   * had the same name.
+   */
+  bool operator==(Party &r);
 
  private:
   char name;      ///< A char representing the name of the party.
@@ -107,7 +124,8 @@ class Party {
   std::vector<Candidate *>
       partyMembers;  ///< A vector of Candidate pointers representing the
   ///< members that make up the party.
-  int numBallots;  ///< An integer representing the number of ballots the Candidate has assigned to them.
+  int numBallots;  ///< An integer representing the number of ballots the
+                   ///< Candidate has assigned to them.
 };
 
 #endif
