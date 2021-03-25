@@ -6,6 +6,9 @@
  *   @copyright 2021 Aegis, All rights reserved.
  */
 
+#ifndef HELPERS_H
+#define HELPERS_H
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -98,3 +101,4 @@ void printVec(std::vector<std::string> vec);
 void printVecI(std::vector<int> vec);
 
 /** @}*/
+#endif
