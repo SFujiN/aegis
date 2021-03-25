@@ -11,8 +11,8 @@
  * Includes
  ******************************************************************************/
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 /*******************************************************************************
  * Class Definitions
@@ -38,6 +38,15 @@ class Ballot {
    * vector.
    */
   void incrCurrent();
+  /**
+   * @brief Overload operator for comparisons between Ballot's candidate vectors.
+   *
+   * @param r, represents the Ballot to compare "this" to.
+   *
+   * @return Returns true or false to represent if Ballots are equal to one
+   * another
+   */
+  bool operator==(Ballot& r);
 
   /**
    * @brief Method to return candidates vector.

@@ -8,6 +8,15 @@ void Ballot::incrCurrent() {
   //std::cout << "currBallotAfter" << currBallot << std::endl;
 }
 
+bool Ballot::operator==(Ballot& r) {
+  //std::vector<int> thisCandidates = this->getCandidates();
+  //std::vector<int> rCandidates = r.getCandidates();
+  for (int i = 0; i < candidates.size(); i++) {
+    if (candidates.at(i) != r.getCandidates().at(i)) return false;
+  }
+  return true;
+}
+
 std::vector<int> Ballot::getCandidates() { return candidates; }
 int Ballot::getCurrBallotIndex() {
   return candidates[currBallot] - 1;  // returns index of candidate in actual candidate vector
