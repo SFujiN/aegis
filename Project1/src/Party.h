@@ -45,6 +45,13 @@ class Party {
    * @return Returns the number of ballots.
    */
   int getNumBallots();
+  /**
+   * @brief Method to return the variable numBallots that belong to the Party.
+   * Used for testing purposes.
+   *
+   * @return Returns the variable numBallots.
+   */
+  int getVariableNumBallots() { return numBallots; }
 
   /**
    * @brief Method to return the number of seats the Party has won.
@@ -68,7 +75,8 @@ class Party {
    */
   std::vector<Candidate *> getPartyMembers();
   /**
-   * @brief Sorts partyMembers vector by the number of votes each candidate has.
+   * @brief Sorts partyMembers vector by the number of votes each candidate has
+   * from most to least.
    */
   void sortByVotes();
   /**

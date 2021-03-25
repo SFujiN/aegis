@@ -20,13 +20,15 @@ void Candidate::addBallot(Ballot ballot) { ballots.push_back(ballot); }
 void Candidate::negateStatus() { status = !status; }
 
 bool Candidate::operator<(Candidate& r) {
+  std::cout << this->getNumBallots() << std::endl;
+  std::cout << r.getNumBallots() << std::endl;
+
   return this->getNumBallots() < r.getNumBallots();
 }
 
 bool Candidate::operator==(Candidate& r) {
   return (this->getNumBallots() == r.getNumBallots()) &&
-          (this->getName() == r.getName()) &&
-          (this->getParty() == r.getParty());
+         (this->getName() == r.getName()) && (this->getParty() == r.getParty());
 }
 
 void Candidate::setInitBallots(int numBallots) { initBallots = numBallots; }
