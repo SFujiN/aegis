@@ -1,5 +1,6 @@
-#include "../src/Candidate.h"
-#include "../src/Ballot.h"
+#include "../src/Candidate.cpp"
+#include "../src/Ballot.cpp"
+#include "../src/Party.cpp"
 #include "gtest/gtest.h"
 #include <vector>
 
@@ -72,52 +73,53 @@ TEST_F (CandidateTests, getInitBallotsTest) {
     EXPECT_EQ(David.getInitBallots(),0) << "GetBallots has errors";
 }
 
-TEST_F (CandidateTests, getNumBallotsTest) { 
-    Candidate Bob = Candidate('I',"Bob");
-    Candidate Jane = Candidate('D',"Jane");
-    Candidate David = Candidate('L',"Dave");
-    std::vector<Candidate> candidates;
-    std::vector<int> ballotCandidates;
-    std::vector<int> ballotCandidates2;
-    std::vector<int> ballotCandidates3;
+// TEST_F (CandidateTests, getBallotsTest) { 
+//     Candidate Bob = Candidate('I',"Bob");
+//     Candidate Jane = Candidate('D',"Jane");
+//     Candidate David = Candidate('L',"Dave");
+//     std::vector<Candidate> candidates;
+//     std::vector<int> ballotCandidates;
+//     std::vector<int> ballotCandidates2;
+//     std::vector<int> ballotCandidates3;
     
-    candidates.push_back(Bob);
-    candidates.push_back(Jane);
-    candidates.push_back(David);
+//     candidates.push_back(Bob);
+//     candidates.push_back(Jane);
+//     candidates.push_back(David);
 
-    ballotCandidates.push_back(2);
-    ballotCandidates.push_back(3);
-    ballotCandidates.push_back(1);
+//     ballotCandidates.push_back(2);
+//     ballotCandidates.push_back(3);
+//     ballotCandidates.push_back(1);
 
-    ballotCandidates2.push_back(1);
-    ballotCandidates2.push_back(2);
-    ballotCandidates2.push_back(3);
+//     ballotCandidates2.push_back(1);
+//     ballotCandidates2.push_back(2);
+//     ballotCandidates2.push_back(3);
 
-    ballotCandidates3.push_back(3);
-    ballotCandidates3.push_back(2);
-    ballotCandidates3.push_back(1);
+//     ballotCandidates3.push_back(3);
+//     ballotCandidates3.push_back(2);
+//     ballotCandidates3.push_back(1);
 
-    Ballot ballot1(ballotCandidates);
-    Ballot ballot2(ballotCandidates2);
-    Ballot ballot3(ballotCandidates3);
+//     Ballot ballot1(ballotCandidates);
+//     Ballot ballot2(ballotCandidates2);
+//     Ballot ballot3(ballotCandidates3);
 
-    Bob.addBallot(ballot1);
-    Bob.addBallot(ballot2);
-    Bob.addBallot(ballot3);
+//     Bob.addBallot(ballot1);
+//     Bob.addBallot(ballot2);
+//     Bob.addBallot(ballot3);
 
-    std::vector<Ballot> ballotVec;
-    ballotVec.push_back(ballot1);
-    ballotVec.push_back(ballot2);
-    ballotVec.push_back(ballot3);
+//     std::vector<Ballot> ballotVec;
+//     ballotVec.push_back(ballot1);
+//     ballotVec.push_back(ballot2);
+//     ballotVec.push_back(ballot3);
 
-    EXPECT_EQ(Bob.getBallots()[0], ballotVec[0]) << "GetBallots has errors";
-    EXPECT_EQ(Bob.getBallots()[1], ballotVec[1]) << "GetBallots has errors";
-    EXPECT_EQ(Bob.getBallots()[2], ballotVec[2]) << "GetBallots has errors";
-    
-    
+//     EXPECT_EQ(Bob.getBallots().at(0), ballotVec.at(0)) << "GetBallots has errors";
+//     EXPECT_EQ(Bob.getBallots().at(1), ballotVec.at(1)) << "GetBallots has errors";
+//     EXPECT_EQ(Bob.getBallots().at(2), ballotVec.at(2)) << "GetBallots has errors";
+// }
+
+
+
+int main(int argc, char *argv[]) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
-
-
-
-
 
