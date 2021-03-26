@@ -109,17 +109,24 @@ TEST_F(CandidateTests, getBallotsTest) {
   ballotVec.push_back(ballot2);
   ballotVec.push_back(ballot3);
 
-  for (int i = 0; i < 4; i++) {
-    EXPECT_EQ(Bob.getBallots().at(0).getCandidates()[i],
-              ballotVec.at(0).getCandidates()[i])
-        << "GetBallots has errors";
-    EXPECT_EQ(Bob.getBallots().at(1).getCandidates()[i],
-              ballotVec.at(1).getCandidates()[i])
-        << "GetBallots has errors";
-    EXPECT_EQ(Bob.getBallots().at(2).getCandidates()[i],
-              ballotVec.at(2).getCandidates()[i])
-        << "GetBallots has errors";
-  }
+  // for (int i = 0; i < 4; i++) {
+  //     EXPECT_EQ(Bob.getBallots().at(0).getCandidates()[i],
+  //     ballotVec.at(0).getCandidates()[i]) << "GetBallots has errors";
+  //     EXPECT_EQ(Bob.getBallots().at(1).getCandidates()[i],
+  //     ballotVec.at(1).getCandidates()[i]) << "GetBallots has errors";
+  //     EXPECT_EQ(Bob.getBallots().at(2).getCandidates()[i],
+  //     ballotVec.at(2).getCandidates()[i]) << "GetBallots has errors";
+  //}
+  EXPECT_EQ(Bob.getBallots().at(0).getCandidates(),
+            ballotVec.at(0).getCandidates())
+      << "GetBallots has errors";
+  EXPECT_EQ(Bob.getBallots().at(1).getCandidates(),
+            ballotVec.at(1).getCandidates())
+      << "GetBallots has errors";
+
+  EXPECT_EQ(Bob.getBallots().at(2).getCandidates(),
+            ballotVec.at(2).getCandidates())
+      << "GetBallots has errors";
 }
 
 int main(int argc, char *argv[]) {
