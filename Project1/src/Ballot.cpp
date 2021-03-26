@@ -9,12 +9,7 @@ void Ballot::incrCurrent() {
 }
 
 bool Ballot::operator==(Ballot& r) {
-  //std::vector<int> thisCandidates = this->getCandidates();
-  //std::vector<int> rCandidates = r.getCandidates();
-  for (int i = 0; i < candidates.size(); i++) {
-    if (candidates.at(i) != r.getCandidates().at(i)) return false;
-  }
-  return true;
+  return this->getCandidates() == r.getCandidates();
 }
 
 std::vector<int> Ballot::getCandidates() { return candidates; }
