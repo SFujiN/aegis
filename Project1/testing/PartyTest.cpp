@@ -134,18 +134,3 @@ int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
-
-/* CHANGES
-- overloaded == operator in Party.h and Party.cpp
-- overloaded == operator in Candidate.h and Candidate.cpp
-- int getVariableNumBallots() in Party.h
-*/
-
-/* QUESTIONS
-- setNumBallots test
-    // remove this function? hard to check since getNumBallots COUNTS ballots
-from each candidates opposed to just returning numBallots
- */
-
-/* TODO
- */
