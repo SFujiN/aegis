@@ -57,28 +57,34 @@ void OPL::allocateSeats() {
       writeToAuditFile(a + " gets " + std::to_string(seats) +
                        " seats and the remainder is " +
                        std::to_string(currParty.getRemainder()) + "\n");
+      currParty.setSeatsWon(seats);
+
     } else if (currParty.getPartyMembers().size() == seats) {
       numSeats -= seats;
       currParty.setRemainder(0);
       writeToAuditFile(a + " gets " + std::to_string(seats) +
                        " seats and the remainder is 0 \n");
+      currParty.setSeatsWon(seats);
+
     } else {
       numSeats -= currParty.getPartyMembers().size();
       currParty.setRemainder(0);
       writeToAuditFile(a + " gets " +
                        std::to_string(currParty.getPartyMembers().size()) +
                        " seats and the remainder is 0 \n");
+      currParty.setSeatsWon(currParty.getPartyMembers().size());
     }
-    currParty.setSeatsWon(seats);
   }  // For loop end
   sortByRemainder();
 
   int i = 0;
   while (numSeats != 0) {
-    parties[i].setSeatsWon(parties[i].getSeatsWon() + 1);
-    writeToAuditFile(std::string(1, parties[i].getPartyName()) +
-                     " gets another seat and has a total of " +
-                     std::to_string(parties[i].getSeatsWon()) + " seats.");
+    if (parties[i].getSeatsWon() != parties[i].getPartyMembers().size()) {
+      parties[i].setSeatsWon(parties[i].getSeatsWon() + 1);
+      writeToAuditFile(std::string(1, parties[i].getPartyName()) +
+                       " gets another seat and has a total of " +
+                       std::to_string(parties[i].getSeatsWon()) + " seats.");
+    }
     i++;
     numSeats--;
   }
