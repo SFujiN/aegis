@@ -1,9 +1,9 @@
 #include <vector>
 
-#include "../src/Ballot.cpp"
-#include "../src/Candidate.cpp"
+// #include "../src/Ballot.cpp"
+// #include "../src/Candidate.cpp"
 #include "../src/IR.cpp"
-#include "../src/Party.cpp"
+// #include "../src/Party.cpp"
 #include "../src/VotingSystem.cpp"
 #include "gtest/gtest.h"
 
@@ -161,7 +161,7 @@ TEST_F(IRTest, checkIfOneCandThreeCands) {
          "vector if there are more two or more candidates left in the election";
 }
 
-int main(int argc, char *argv[]) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+// int main(int argc, char *argv[]) {
+//   ::testing::InitGoogleTest(&argc, argv);
+//   return RUN_ALL_TESTS();
+// }

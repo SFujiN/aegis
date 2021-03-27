@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "../src/Ballot.cpp"
+// #include "../src/Ballot.cpp"
 #include "../src/Candidate.cpp"
 #include "../src/Party.cpp"
 #include "gtest/gtest.h"
@@ -121,7 +121,7 @@ TEST_F(CandidateTests, getBallotsTest) {
       << "GetBallots has errors";
 }
 
-int main(int argc, char *argv[]) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+// int main(int argc, char *argv[]) {
+//   ::testing::InitGoogleTest(&argc, argv);
+//   return RUN_ALL_TESTS();
+// }
