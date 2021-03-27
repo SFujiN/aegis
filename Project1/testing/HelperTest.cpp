@@ -82,6 +82,36 @@ TEST(HelperTests, IRBallotToVec) {
     
 }
 
-// TEST(HelperTests, popItem) {
+TEST(HelperTests, popItem) {
+    std::string line = "[The quick brown fox] jumped[] over [the lazy dog]";
+    char l = '[', r = ']';
 
-// }
+    EXPECT_EQ("The quick brown fox", popItem(line, l, r));
+    EXPECT_EQ(" jumped[] over [the lazy dog]", line);
+
+    EXPECT_EQ("", popItem(line, l, r));
+    EXPECT_EQ(" over [the lazy dog]", line);
+
+    EXPECT_EQ("the lazy dog", popItem(line, l, r));
+    EXPECT_EQ("", line);
+}
+
+TEST(HelperTests, extractOPLNames) {
+    std::string empty_line = "";
+    std::string line = "[a1][a2][a3]";
+    std::string weird = "[a1]a2[a3]";
+
+    EXPECT_EQ(0, extractOPLNames(empty_line).size());
+    EXPECT_THAT(extractOPLNames(line), testing::ElementsAre("a1", "a2", "a3"));
+    EXPECT_THAT(extractOPLNames(weird), testing::ElementsAre("a1", "a3"));
+}
+
+TEST(HelperTests, extractIRNames) {
+    std::string empty_line = "";
+    std::string line = "Ronald,Donald,Bonald";
+    std::string extra = "Grant,Hant Le'mant,Valorant";
+
+    EXPECT_EQ(0, extractIRNames(empty_line).size());
+    EXPECT_THAT(extractIRNames(line), testing::ElementsAre("Ronald", "Donald", "Bonald"));
+    EXPECT_THAT(extractIRNames(extra), testing::ElementsAre("Grant", "Hant Le'mant", "Valorant"));
+}
