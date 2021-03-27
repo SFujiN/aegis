@@ -1,2 +1,3 @@
 Ties don't break correctly when there are multiple people in a tie.
 IR sometimes infinite loops with large amounts of votes(?).
+Helper function IRBallotToIndex doesn't properly ignore commas when there are no numbers
