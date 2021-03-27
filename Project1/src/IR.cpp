@@ -10,15 +10,16 @@ IR::IR(std::string type, int candidates, int seats, int ballots) {
 void IR::findWinner() {
   elim = &candidates[0];
   writeToAuditFile("Checking for a majority.\n");
-  if ((elim->getNumBallots() / numBallots > 0.5)) {  // Checking for over 50%
+  if ((float)(elim->getNumBallots() / (float)numBallots >
+              0.5)) {  // Checking for over 50%
     writeToAuditFile(elim->getName() +
                      " has majority and has won the election.\n");
     addWinners(*elim);
   }
 
   for (int i = 1; i < numCandidates; i++) {
-    if ((candidates[i].getNumBallots() / numBallots >
-         0.5)) {  // Checking for over 50%
+    if ((float)(candidates[i].getNumBallots() / (float)numBallots >
+                0.5)) {  // Checking for over 50%
       writeToAuditFile(candidates[i].getName() +
                        " has majority and has won the election.\n");
       addWinners(candidates[i]);
@@ -50,6 +51,13 @@ void IR::elimination() {
     while (ballot.getCurrBallotIndex() >= 0 &&
            (candidates[ballot.getCurrBallotIndex()].getNumBallots() == 0) &&
            (ballot.getCurrBallot() < candidates.size() - 1)) {
+      // ensures the ballot index is non-negative and that there exists another
+      // candidate to vote for
+
+      // ensures that the candidate we're giving it too isn't out of the race
+      // (i.e. has 0 ballots)
+
+      // ensures we don't over increment the ballot
       writeToAuditFile(
           candidates[ballot.getCurrBallotIndex()].getName() +
           " was eliminated earlier and this ballot will be incremented.\n");
@@ -112,7 +120,7 @@ void IR::runElection() {
   while (winners.size() == 0) {
     elimination();
     checkIfOneCand();
-    findWinner();
+    if (winners.size() == 0) findWinner();
   }
   for (int i = 0; i < candidates.size(); i++) {
     if (candidates[i].getName() != winners[0].getName()) {
@@ -136,7 +144,8 @@ void IR::displayResults() {
   std::cout << "General Election Information" << std::endl;
   printf("\tElection Type: IR\n");
   printf("\tTotal Ballots: %d\n", numBallots);
-  writeToMediaFile("Election Type: IR\nTotal Ballots:" + std::to_string(numBallots) + "\n");
+  writeToMediaFile(
+      "Election Type: IR\nTotal Ballots:" + std::to_string(numBallots) + "\n");
 
   std::cout << "\nWinner" << std::endl;
   writeToMediaFile("Winner\n");
