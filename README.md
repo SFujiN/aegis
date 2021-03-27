@@ -16,5 +16,5 @@ $ cmake CMakeList.txt
 
 then run make to create the executable runTests, then run runTests to run the tests.
 
-$ make
+$ make\n
 $ ./runTests
