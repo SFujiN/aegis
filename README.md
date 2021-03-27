@@ -10,4 +10,11 @@ from within the folder where the executable is built usage of Aegis is done usin
 
 $ ./Aegis <file_name>
 
-To run the unit tests, enter the "testing" directory. To compile, run "g++ <fileName>" and then run "./a.out" to run the unit test for the corresponding file.
+To run the unit tests, enter the "testing" directory. To compile, run cmake on the provided CMakeList.txt file
+
+$ cmake CMakeList.txt
+
+then run make to create the executable runTests, then run runTests to run the tests.
+
+$ make
+$ ./runTests
