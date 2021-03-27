@@ -14,7 +14,7 @@ $ ./Aegis <file_name>
 ## Running Unit Tests
 To run the unit tests, enter the "testing" directory. To compile, run cmake on the provided CMakeList.txt file
 
-$ cmake CMakeList.txt
+$ cmake CMakeLists.txt
 
 then run make to create the executable runTests, then run runTests to run the tests.
 
