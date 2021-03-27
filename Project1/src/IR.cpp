@@ -10,30 +10,32 @@ IR::IR(std::string type, int candidates, int seats, int ballots) {
 void IR::findWinner() {
   elim = &candidates[0];
   writeToAuditFile("Checking for a majority.\n");
-  if ((float)(elim->getNumBallots() / (float)numBallots >
-              0.5)) {  // Checking for over 50%
+  if ((float)(elim->getNumBallots() / (float) numBallots > 0.5)) {  // Checking for over 50%
     writeToAuditFile(elim->getName() +
                      " has majority and has won the election.\n");
     addWinners(*elim);
   }
 
   for (int i = 1; i < numCandidates; i++) {
-    if ((float)(candidates[i].getNumBallots() / (float)numBallots >
-                0.5)) {  // Checking for over 50%
+    if ((float) (candidates[i].getNumBallots() / (float) numBallots >
+         0.5))  {  // Checking for over 50%
       writeToAuditFile(candidates[i].getName() +
-                       " has majority and has won the election.\n");
+                       " has a majority and has won the election.\n");
       addWinners(candidates[i]);
     }
-    if ((candidates[i].getNumBallots() < elim->getNumBallots()) &&
+    else if (elim->getNumBallots() == 0){
+      elim = &candidates[i];
+    }
+    else if ((candidates[i].getNumBallots() < elim->getNumBallots()) &&
         candidates[i].getNumBallots() != 0) {
-      writeToAuditFile(candidates[i].getName() + "has less ballots than " +
+      writeToAuditFile(candidates[i].getName() + " has less ballots than " +
                        elim->getName() +
                        " and currently has the lowest amount of ballots.\n");
       elim = &candidates[i];
 
     } else if (candidates[i].getNumBallots() == elim->getNumBallots() &&
                candidates[i].getNumBallots() != 0) {
-      *elim = breakTie(candidates[i], *elim);
+      elim = breakTie(&candidates[i], elim);
       writeToAuditFile(
           elim->getName() +
           " has lost the tie and is now in line to get eliminated.\n");
@@ -84,7 +86,7 @@ void IR::elimination() {
   writeToAuditFile(elim->getName() + " has been eliminated.\n");
 }
 
-Candidate IR::breakTie(Candidate a, Candidate b) {
+Candidate* IR::breakTie(Candidate* a, Candidate* b) {
   int random = rand() % 100;
   if (random >= 50) {
     return a;
