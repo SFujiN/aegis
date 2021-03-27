@@ -52,7 +52,7 @@ class IR : public VotingSystem {
    * @return Candidate that won the tie breaker.
    */
 
-  Candidate breakTie(Candidate a, Candidate b);
+  Candidate* breakTie(Candidate *a, Candidate *b);
 
   /**
    * @brief virtual function to handle election program.
