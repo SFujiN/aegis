@@ -103,9 +103,12 @@ TEST_F(IRTest, elimination) {
 
   ir->setElim(&(ir->getCandidates().at(2)));
   ir->elimination();
-  EXPECT_EQ(ir->getCandidates().at(0).getNumBallots(), 4);
-  EXPECT_EQ(ir->getCandidates().at(1).getNumBallots(), 3);
-  EXPECT_EQ(ir->getCandidates().at(2).getNumBallots(), 0);
+  EXPECT_EQ(ir->getCandidates().at(0).getNumBallots(), 4)
+      << "elimination: failed to elimate a candidate properly";
+  EXPECT_EQ(ir->getCandidates().at(1).getNumBallots(), 3)
+      << "elimination: failed to elimate a candidate properly";
+  EXPECT_EQ(ir->getCandidates().at(2).getNumBallots(), 0)
+      << "elimination: failed to elimate a candidate properly";
 }
 
 TEST_F(IRTest, eliminationBallotToEliminatedCandidate) {
@@ -124,9 +127,12 @@ TEST_F(IRTest, eliminationBallotToEliminatedCandidate) {
   ir->elimination();  // all ballots should be discarded Dribble isn't one of
                       // their votes
 
-  EXPECT_EQ(ir->getCandidates().at(0).getNumBallots(), 4);
-  EXPECT_EQ(ir->getCandidates().at(1).getNumBallots(), 0);
-  EXPECT_EQ(ir->getCandidates().at(2).getNumBallots(), 0);
+  EXPECT_EQ(ir->getCandidates().at(0).getNumBallots(), 4)
+      << "elimination: failed to elimate a candidate properly";
+  EXPECT_EQ(ir->getCandidates().at(1).getNumBallots(), 0)
+      << "elimination: failed to elimate a candidate properly";
+  EXPECT_EQ(ir->getCandidates().at(2).getNumBallots(), 0)
+      << "elimination: failed to elimate a candidate properly";
 }
 
 TEST_F(IRTest, checkIfOneCandOneCand) {
@@ -134,19 +140,25 @@ TEST_F(IRTest, checkIfOneCandOneCand) {
   ir->getCandidates().at(0).setBallots(noBallots);
   ir->getCandidates().at(1).setBallots(noBallots);
   ir->checkIfOneCand();
-  EXPECT_TRUE(ir->getWinners().size() == 1);
+  EXPECT_TRUE(ir->getWinners().size() == 1)
+      << "checkIfOneCandOneCand: failed to add candidate to winning vector if "
+         "there exists only one candidate left in the election";
 }
 
 TEST_F(IRTest, checkIfOneCandTwoCands) {
   std::vector<Ballot> noBallots{};
   ir->getCandidates().at(0).setBallots(noBallots);
   ir->checkIfOneCand();
-  EXPECT_TRUE(ir->getWinners().size() == 0);
+  EXPECT_TRUE(ir->getWinners().size() == 0)
+      << "checkIfOneCandTwoCands: failed to not add candidate to winning "
+         "vector if there are more two or more candidates left in the election";
 }
 
 TEST_F(IRTest, checkIfOneCandThreeCands) {
   ir->checkIfOneCand();
-  EXPECT_TRUE(ir->getWinners().size() == 0);
+  EXPECT_TRUE(ir->getWinners().size() == 0)
+      << "checkIfOneCandTwoCands: failed to not add candidate to winning "
+         "vector if there are more two or more candidates left in the election";
 }
 
 // int main(int argc, char *argv[]) {
