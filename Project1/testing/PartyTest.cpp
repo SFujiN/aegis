@@ -1,6 +1,6 @@
-#include "../src/Ballot.cpp"
-#include "../src/Candidate.cpp"
-#include "../src/Party.cpp"
+// #include "../src/Ballot.cpp"
+// #include "../src/Candidate.cpp"
+// #include "../src/Party.cpp"
 #include "gtest/gtest.h"
 
 class PartyTest : public ::testing::Test {
@@ -130,7 +130,7 @@ TEST_F(PartyTest, addCandidate1) {
   EXPECT_EQ(Derrick3, D->getPartyMembers().at(2))<<"addCandidate1: failed to add a candidate to a Party";
 }
 
-int main(int argc, char *argv[]) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+// int main(int argc, char *argv[]) {
+//   ::testing::InitGoogleTest(&argc, argv);
+//   return RUN_ALL_TESTS();
+// }
