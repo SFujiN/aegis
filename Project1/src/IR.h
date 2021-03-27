@@ -52,7 +52,7 @@ class IR : public VotingSystem {
    * @return Candidate that won the tie breaker.
    */
 
-  Candidate breakTie(Candidate a, Candidate b);
+  Candidate* breakTie(Candidate *a, Candidate *b);
 
   /**
    * @brief virtual function to handle election program.
@@ -78,6 +78,19 @@ class IR : public VotingSystem {
    */
 
   void checkIfOneCand();
+  /**
+   * @brief Sets elim to the passed in Candidate candidate
+   *
+   * @param candidate, sets elim equal to this.
+   *
+   */
+  void setElim(Candidate* candidate) { elim = candidate; }
+  /**
+   * @brief Method to get the elim Candidate.
+   *
+   * @return Returns the elim candidate.
+   */
+  Candidate* getElim() { return elim; }
 
  private:
   Candidate* elim;  ///< Holds the current candidate to be eliminated.

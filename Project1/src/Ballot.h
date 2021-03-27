@@ -11,8 +11,8 @@
  * Includes
  ******************************************************************************/
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 /*******************************************************************************
  * Class Definitions
@@ -33,11 +33,23 @@ class Ballot {
    */
   Ballot(std::vector<int> v1);
 
+  Ballot(const Ballot& b);
+
   /**
    * @brief Increments currBallot pointer to next value in the candidates
    * vector.
    */
   void incrCurrent();
+  /**
+   * @brief Overload operator for comparisons between Ballot's candidate
+   * vectors.
+   *
+   * @param r, represents the Ballot to compare "this" to.
+   *
+   * @return Returns true or false to represent if Ballots are equal to one
+   * another
+   */
+  bool operator==(Ballot& r);
 
   /**
    * @brief Method to return candidates vector.
@@ -62,7 +74,7 @@ class Ballot {
   /**
    * @brief Prints out candidates vector for debugging purposes.
    */
-  void printBallot();
+  void printBallot(std::ostream &os);
 
  private:
   std::vector<int> candidates;  ///< A vector of ints representing the order in

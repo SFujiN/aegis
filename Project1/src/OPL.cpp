@@ -34,9 +34,6 @@ void OPL::sortByRemainder() {
     Party key = parties[i];
     j = i - 1;
     while (j >= 0 && parties[j].getRemainder() < key.getRemainder()) {
-      std::cout << std::string(1, parties[j].getPartyName()) + " swaps with " +
-                       std::string(1, key.getPartyName()) + "\n"
-                << std::endl;
       writeToAuditFile(std::string(1, parties[j].getPartyName()) +
                        " swaps with " + std::string(1, key.getPartyName()) +
                        "\n");
