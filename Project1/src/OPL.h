@@ -95,13 +95,20 @@ class OPL : public VotingSystem {
    * Sets the parties vector
    */
   void setParties(std::vector<Party> parties_);
-  
+
   /**
    * @brief A setter for quota.
    *
    * Sets the quota
    */
   void setQuota(int n) { quota = n; }
+
+  /**
+   * @brief A setter for numSeats.
+   *
+   * Sets the numSeats
+   */
+  void setNumSeats(int n) { numSeats = n; }
 
   /**
    * @brief Prints information about each Party for debugging purposes.
