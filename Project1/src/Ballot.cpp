@@ -2,6 +2,11 @@
 
 Ballot::Ballot(std::vector<int> v1) : candidates(v1) {}
 
+Ballot::Ballot(const Ballot &b) {
+  candidates = b.candidates;
+  currBallot = b.currBallot;
+}
+
 void Ballot::incrCurrent() {
   //std::cout << "currBallotBefore" << currBallot << std::endl;
   currBallot++;
@@ -20,9 +25,9 @@ int Ballot::getCurrBallotIndex() {
 //    i=0  i=1 i=2 i=3  i=4
 // candidates[ballot1.getCandidates().at(ballot1.getCurrent())-1]
 
-void Ballot::printBallot() {
+void Ballot::printBallot(std::ostream &os) {
   for (int i = 0; i < candidates.size(); i++) {
-    std::cout << "candidate[" << i << "]: " << candidates[i] << std::endl;
+    os << "candidate[" << i << "]: " << candidates[i] << std::endl;
   }
 }
 
