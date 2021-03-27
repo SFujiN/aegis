@@ -45,8 +45,3 @@ TEST_F(BallotTest, PrintEmptyBallot) {
   emptyBallot->printBallot(output);
   ASSERT_EQ(output.str(), "")<<"PrintEmptyBallot: should've printed an empty ballot";
 }
-
-// int main(int argc, char **argv) {
-//   testing::InitGoogleTest(&argc, argv);
-//   return RUN_ALL_TESTS();
-// }

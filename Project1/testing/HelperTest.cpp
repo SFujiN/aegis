@@ -6,15 +6,6 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-// TEST(HelperTests, getNameTest) {
-//   std::string test1 = "5";
-//   std::string test2 = "-1";
-//   std::string test3 = "0";
-//   EXPECT_EQ(OPLBallotToIndex(test1), 5) << "GetParty has errors";
-//   EXPECT_EQ(OPLBallotToIndex(test2), -1) << "GetParty has errors";
-//   EXPECT_EQ(OPLBallotToIndex(test3), 0) << "GetParty has errors";
-// }
-
 TEST(HelperTests, OPLBallotToIndex) {
   std::string garbage = "fjdkasl;";
   std::string empty = "";

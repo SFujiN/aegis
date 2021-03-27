@@ -1,28 +1,12 @@
 #include <vector>
 
-// #include "../src/Ballot.cpp"
 #include "../src/Candidate.cpp"
 #include "../src/Party.cpp"
 #include "gtest/gtest.h"
 
 class CandidateTests : public ::testing::Test {
  public:
-  void SetUp() {
-    /*
-    Bob = Candidate('I',"Bob");
-    Jane = Candidate('D',"Jane");
-    David = Candidate('L',"Dave");
-
-
-}
-
-protected:
-//Candidate default;
-Candidate Bob;
-Candidate Jane;
-Candidate David;
-*/
-  }
+  void SetUp() {}
 };
 
 TEST_F(CandidateTests, getNameTest) {
@@ -120,8 +104,3 @@ TEST_F(CandidateTests, getBallotsTest) {
             ballotVec.at(2).getCandidates())
       << "GetBallots has errors";
 }
-
-// int main(int argc, char *argv[]) {
-//   ::testing::InitGoogleTest(&argc, argv);
-//   return RUN_ALL_TESTS();
-// }
