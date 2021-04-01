@@ -1,10 +1,6 @@
 #include <vector>
 
-// #include "../src/Ballot.cpp"
-// #include "../src/Candidate.cpp"
 #include "../src/OPL.cpp"
-// #include "../src/Party.cpp"
-// #include "../src/VotingSystem.cpp"
 #include "gtest/gtest.h"
 class OPLTest : public ::testing::Test {
  public:
@@ -368,8 +364,3 @@ TEST_F(OPLTest, partyExistsPartyDoesNotExist) {
   EXPECT_FALSE(opl->partyExists('Q'))
       << "partyExistsPartyDoesNotExist: Party Q should not exist";
 }
-
-// int main(int argc, char *argv[]) {
-//   ::testing::InitGoogleTest(&argc, argv);
-//   return RUN_ALL_TESTS();
-// }

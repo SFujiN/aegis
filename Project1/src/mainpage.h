@@ -23,7 +23,7 @@
  * \image html "5801 UML Waterfall v1.png" "UML Class Diagram v1" width=80%
  * \image latex "5801 UML Waterfall v1.png" "UML Class Diagram v1" width=80%
  *
- * \remark Although some functionality such as running both voting systems is
- * possible, much of the unit and integration testing is still to be done
+ * \image html "5801 UML Waterfall v2.png" "UML Class Diagram v2" width=80%
+ * \image latex "5801 UML Waterfall v1.png" "UML Class Diagram v2" width=80%
  *
  */
