@@ -207,6 +207,10 @@ class VotingSystem {
 */
   void assignParty();
 
+  void addNumBallots(int ballots){
+    numBallots += ballots;
+  }
+
   /**
    * @brief Destructor for VotingSystem types
    */
