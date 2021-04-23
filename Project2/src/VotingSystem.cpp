@@ -15,6 +15,7 @@ void VotingSystem::runElection() {
   std::sort(candidates.begin(), candidates.end());
   std::reverse(candidates.begin(), candidates.end());
   displayResults();
+  std::cout << "wrong one" << std::endl;
 }
 
 void VotingSystem::displayResults() {}

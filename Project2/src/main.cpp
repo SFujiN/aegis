@@ -4,8 +4,9 @@
 // #include <string>
 // #include <vector>
 
-#include "../src/OPL.h"
 #include "../src/IR.h"
+#include "../src/OPL.h"
+#include "../src/PO.h"
 #include "../src/helpers.h"
 
 int main(int argc, char *argv[]) {
@@ -39,6 +40,10 @@ int main(int argc, char *argv[]) {
         seatNum = 1;
         file >> ballotNum;
       }
+      if (electionType == "PO") {
+        candidateNames = extractOPLNames(line);
+        file >> ballotNum;
+      }
       getline(file, line);
       while (getline(file, line)) {
         rawBallotInfo.push_back(line);
@@ -60,7 +65,7 @@ int main(int argc, char *argv[]) {
               .at(OPLBallotToIndex(*it))
               .addBallot(Ballot(BallotToVec(candidateNum, *it)));
         }
-        //Aegis->assignParty();
+        // Aegis->assignParty();
       }
 
       if (electionType == "IR") {
@@ -81,22 +86,40 @@ int main(int argc, char *argv[]) {
               .addBallot(Ballot(IRBallotToVec(candidateNum, *it)));
         }
       }
+
+      if (electionType == "PO") {
+        Aegis = new PO(candidateNum, ballotNum);
+        for (auto it = candidateNames.begin(); it != candidateNames.end();
+             it++) {
+          std::string line = *it;
+          char partyLetter = it->at(it->find(',') + 1);
+          Aegis->addCandidate(
+              Candidate(partyLetter, it->substr(0, it->find(','))));
+        }
+        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
+          Aegis->getCandidates()
+              .at(OPLBallotToIndex(*it))
+              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+        }
+      }
       // printVec(rawBallotInfo);
-      // std::vector<int> test2 = BallotToVec(candidateNum, rawBallotInfo.at(0));
+      // std::vector<int> test2 = BallotToVec(candidateNum,
+      // rawBallotInfo.at(0));
 
       // print out the index value of first ballet
       // std::cout << OPLBallotToIndex(rawBallotInfo.at(0)) << std::endl;
 
       // print to see what's in a ballot vector
       // printVecI(test2);
+      else {
+        for (auto it = Aegis->getParties().begin();
+             it != Aegis->getParties().end(); it++) {
+          std::cout << it->getPartyName() << " ";
+        }
+        std::cout << std::endl;
 
-      for (auto it = Aegis->getParties().begin();
-           it != Aegis->getParties().end(); it++) {
-        std::cout << it->getPartyName() << " ";
+        Aegis->assignParty();
       }
-      std::cout << std::endl;
-
-      Aegis->assignParty();
       /* std::vector<Party> newParties = Aegis->getParties();
       for (int i = 0; i < 4; i++) {
         Party thisParty = newParties[i];
@@ -105,7 +128,7 @@ int main(int argc, char *argv[]) {
         std::cout << thisCandidate[0]->getName() << std::endl;
       } */
 
-      //parties are now set up
+      // parties are now set up
       Aegis->runElection();
       Aegis->displayResults();
 
