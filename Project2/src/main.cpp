@@ -9,20 +9,22 @@
 #include "../src/helpers.h"
 
 int main(int argc, char *argv[]) {
+  //Setting up Variables
   std::string fileName, fileContent, electionType, line;
   std::fstream file;
   int candidateNum, seatNum, ballotNum = 0;
   std::vector<std::string> candidateNames, rawBallotInfo;
   VotingSystem *Aegis = nullptr;
   std::cout << "Prototype: Aegis 0.0" << std::endl;
-
+  //If the arguments is less than 2, show current way to use.
   if (argc < 2) {
     std::cout << "Usage: " << argv[0] << " <file name>" << std::endl;
   }
+  //If there are more than two arguments, then take in all the file arguments given.
   if (argc >= 2) {
     fileName = argv[1];
     file.open(fileName, std::ios::in);
-
+    //Checking for the type of the election.
     if (!file.is_open()) {
       std::cout << "Couldn't open: " << fileName << std::endl;
     } else {
@@ -39,7 +41,7 @@ int main(int argc, char *argv[]) {
         seatNum = 1;
       }
       getline(file, line);
-
+      //Same for IR and OPL, it just adds the information needed for that type of election.
       if (electionType == "OPL") {
         Aegis = new OPL(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
@@ -121,7 +123,7 @@ int main(int argc, char *argv[]) {
 
       // print to see what's in a ballot vector
       // printVecI(test2);
-
+      //Prints out the party names.
       for (auto it = Aegis->getParties().begin();
            it != Aegis->getParties().end(); it++) {
         std::cout << it->getPartyName() << " ";
