@@ -1,11 +1,35 @@
+/**
+ * @file PO.h
+ *
+ * @copyright 2021 Aegis, All rights reserved.
+ */
+
+
 #ifndef PO_H
 #define PO_H
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
 
 #include "../src/Party.h"
 #include "../src/VotingSystem.h"
 
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
+
+/**
+ * @brief A class representing the PO Voting System, used to run an PO
+ * election results.
+ *
+ */
 class PO : public VotingSystem {
   public:
+
+  /**
+   * @brief Constructor for PO. Sets number of candidates, and number of ballots.
+   */
+
   PO(int candidates, int ballots);
   /**
    * @brief Runs the PO based election.

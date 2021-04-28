@@ -31,7 +31,7 @@
 class OPL : public VotingSystem {
  public:
   /**
-   * @brief Constructor for OPL. Sets type of election, number of candidates,
+   * @brief Constructor for PO. Sets type of election, number of candidates,
    * number of seats, and number of ballots.
    */
   OPL(std::string type, int candidates, int seats, int ballots);
