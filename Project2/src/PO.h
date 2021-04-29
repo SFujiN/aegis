@@ -6,7 +6,7 @@
 
 class PO : public VotingSystem {
   public:
-  PO(int candidates, int ballots);
+  PO(int candidates);
   void runElection();
   void displayResults();
   void breakTie();

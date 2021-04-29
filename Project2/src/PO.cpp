@@ -1,9 +1,9 @@
 #include "../src/PO.h"
 #include <algorithm>
 
-PO::PO(int candidates, int ballots) {
+PO::PO(int candidates) {
   numCandidates = candidates;
-  numBallots = ballots;
+  numBallots = 0;
 }
 
 void PO::runElection() {

@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
       }
 
       if (electionType == "PO") {
-        Aegis = new PO(candidateNum, ballotNum);
+        Aegis = new PO(candidateNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
              it++) {
           std::string line = *it;
@@ -135,10 +135,27 @@ int main(int argc, char *argv[]) {
           Aegis->addCandidate(
               Candidate(partyLetter, it->substr(0, it->find(','))));
         }
-        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
-          Aegis->getCandidates()
-              .at(OPLBallotToIndex(*it))
-              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+        file.close();
+        for (int i = 1; i < argc; i++) {
+          rawBallotInfo.clear();
+          fileName = argv[i];
+          file.open(fileName, std::ios::in);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          Aegis->addNumBallots(std::stoi(line));
+
+          while (getline(file, line)) {
+            rawBallotInfo.push_back(line);
+          }
+          for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end();
+               it++) {
+            Aegis->getCandidates()
+                .at(OPLBallotToIndex(*it))
+                .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+          }
+          file.close();
         }
       }
       // printVec(rawBallotInfo);
