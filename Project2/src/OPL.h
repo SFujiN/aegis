@@ -115,6 +115,8 @@ class OPL : public VotingSystem {
    */
   void printPartyInfo();
 
+  void addVotesPerParty();
+
  private:
   int quota;  ///< numVotes / numSeats. Used to find how many seats each party
               ///< gets.
