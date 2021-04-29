@@ -108,18 +108,22 @@ int main(int argc, char *argv[]) {
           while (getline(file, line)) {
             rawBallotInfo.push_back(line);
           }
-        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
-          std::vector<int> ballot_int_vector(IRBallotToVec(candidateNum, *it));
-          if (ballot_int_vector.at((ballot_int_vector.size() + 1) / 2 - 1)) {
-            Aegis->getCandidates()
-                .at(IRBallotToIndex(*it))
-                .addBallot(Ballot(ballot_int_vector));
-          } else {
-            ballotNum--;
+          int numInvalidatedBallots = 0;
+          for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end();
+               it++) {
+            std::vector<int> ballot_int_vector(
+                IRBallotToVec(candidateNum, *it));
+            if (ballot_int_vector.at((ballot_int_vector.size() + 1) / 2 - 1)) {
+              Aegis->getCandidates()
+                  .at(IRBallotToIndex(*it))
+                  .addBallot(Ballot(ballot_int_vector));
+            } else {
+              numInvalidatedBallots++;
+            }
           }
+          Aegis->setNumBallots(Aegis->getNumBallots() - numInvalidatedBallots);
+          file.close();
         }
-        Aegis->setNumBallots(ballotNum);
-        file.close();
       }
 
       if (electionType == "PO") {
