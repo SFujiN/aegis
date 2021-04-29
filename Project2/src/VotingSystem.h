@@ -211,14 +211,6 @@ class VotingSystem {
    * @brief Destructor for VotingSystem types
    */
   virtual ~VotingSystem() = default;
-  
-  /**
-   * @brief Sets numBallots to num
-   *
-   * @param int, sets numBallots equal to this.
-   *
-   */
-  void setNumBallots(int num) { numBallots = num; }
 
  protected:
   std::string electionType;  ///< Type of election being held
