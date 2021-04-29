@@ -12,7 +12,7 @@ from within the folder where the executable is built usage of Aegis is done usin
 $ ./Aegis <file_name>
 
 ## Running Unit Tests
-To run the unit tests, enter the "testing" directory. To compile, run cmake on the provided CMakeList.txt file
+To run the unit tests, enter the "testing" directory. To compile, run cmake on the provided CMakeList.txt file (Make sure your version of google tests have gmock)
 
 $ cmake CMakeLists.txt
 
