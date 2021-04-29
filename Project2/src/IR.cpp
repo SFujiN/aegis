@@ -8,38 +8,27 @@ IR::IR(std::string type, int candidates, int seats, int ballots) {
 }
 
 void IR::findWinner() {
-  elim = &candidates[0];
-  writeToAuditFile("Checking for a majority.\n");
-  if ((float)(elim->getNumBallots() / (float) numBallots > 0.5)) {  // Checking for over 50%
-    writeToAuditFile(elim->getName() +
-                     " has majority and has won the election.\n");
-    addWinners(*elim);
-  }
-
-  for (int i = 1; i < numCandidates; i++) {
-    if ((float) (candidates[i].getNumBallots() / (float) numBallots >
-         0.5))  {  // Checking for over 50%
-      writeToAuditFile(candidates[i].getName() +
-                       " has a majority and has won the election.\n");
-      addWinners(candidates[i]);
+  sortedCandidates = candidates;
+  tiedCandidates = {};
+  std::sort(sortedCandidates.begin(), sortedCandidates.end());
+  std::reverse(sortedCandidates.begin(), sortedCandidates.end());
+  if (sortedCandidates.at(0).getNumBallots() * 2 >
+      numBallots) {  // if majority, winner found
+    writeToAuditFile("Checking for a majority.\n");
+    addWinners(sortedCandidates.at(0));
+    writeToAuditFile(sortedCandidates.at(0).getName() +
+                     " has a majority and has won the election.\n");
+  } else {
+    int i = sortedCandidates.size() - 1;
+    while (!sortedCandidates.at(i).getNumBallots() && i) {
+      i--;
     }
-    else if (elim->getNumBallots() == 0){
-      elim = &candidates[i];
+    tiedCandidates.push_back(sortedCandidates.at(i--));
+    while (i >= 0 && tiedCandidates.at(0).getNumBallots() ==
+               sortedCandidates.at(i).getNumBallots()) {
+      tiedCandidates.push_back(sortedCandidates.at(i--));
     }
-    else if ((candidates[i].getNumBallots() < elim->getNumBallots()) &&
-        candidates[i].getNumBallots() != 0) {
-      writeToAuditFile(candidates[i].getName() + " has less ballots than " +
-                       elim->getName() +
-                       " and currently has the lowest amount of ballots.\n");
-      elim = &candidates[i];
-
-    } else if (candidates[i].getNumBallots() == elim->getNumBallots() &&
-               candidates[i].getNumBallots() != 0) {
-      elim = breakTie(&candidates[i], elim);
-      writeToAuditFile(
-          elim->getName() +
-          " has lost the tie and is now in line to get eliminated.\n");
-    }
+    breakTie();
   }
 }
 
@@ -86,12 +75,13 @@ void IR::elimination() {
   writeToAuditFile(elim->getName() + " has been eliminated.\n");
 }
 
-Candidate* IR::breakTie(Candidate* a, Candidate* b) {
-  int random = rand() % 100;
-  if (random >= 50) {
-    return a;
-  } else
-    return b;
+void IR::breakTie() {
+  srand(time(NULL));
+  int random = rand() % tiedCandidates.size();
+  elim = &tiedCandidates.at(random);
+  writeToAuditFile(
+      elim->getName() +
+      " has lost the tiebreaker and is now in line to be eliminated.\n");
 }
 
 void IR::checkIfOneCand() {

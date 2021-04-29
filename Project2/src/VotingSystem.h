@@ -207,7 +207,7 @@ class VotingSystem {
 
   void assignParty();
 
-   /**
+  /**
    * @brief Adds to the current number of ballots.
    *
    * @param[in] ballots The number of ballots to add.
@@ -215,9 +215,7 @@ class VotingSystem {
    *
    * @return void.
    */
-  void addNumBallots(int ballots){
-    numBallots += ballots;
-  }
+  void addNumBallots(int ballots) { numBallots += ballots; }
 
   /**
    * @brief Sets numBallots to num
@@ -241,6 +239,8 @@ class VotingSystem {
       timeTaken;  ///< holds the amount of time taken by the program to execute
   std::vector<Candidate>
       candidates;  ///< vector to hold candidates running for a seat
+  std::vector<Candidate> sortedCandidates;
+  std::vector<Candidate> tiedCandidates;
   std::vector<Party>
       parties;  ///< vector to hold all parties involved with the election
   std::ofstream auditFile;    ///<
