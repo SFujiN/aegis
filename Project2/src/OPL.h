@@ -31,7 +31,7 @@
 class OPL : public VotingSystem {
  public:
   /**
-   * @brief Constructor for OPL. Sets type of election, number of candidates,
+   * @brief Constructor for PO. Sets type of election, number of candidates,
    * number of seats, and number of ballots.
    */
   OPL(std::string type, int candidates, int seats, int ballots);
@@ -70,7 +70,7 @@ class OPL : public VotingSystem {
   void findPartyWinners();
 
   /**
-   * @brief Runs the IR election.
+   * @brief Runs the OPL election.
    *
    * Runs all of the methods needed to run a OPL election.
    *
@@ -114,7 +114,9 @@ class OPL : public VotingSystem {
    * @brief Prints information about each Party for debugging purposes.
    */
   void printPartyInfo();
-
+  /**
+   * @brief Adds the votes from each member in a party to the party. Does this for every party.
+   */
   void addVotesPerParty();
 
  private:
