@@ -20,8 +20,8 @@ void Candidate::addBallot(Ballot ballot) { ballots.push_back(ballot); }
 void Candidate::negateStatus() { status = !status; }
 
 bool Candidate::operator<(Candidate& r) {
-  std::cout << this->getNumBallots() << std::endl;
-  std::cout << r.getNumBallots() << std::endl;
+  //std::cout << this->getNumBallots() << std::endl;
+  //std::cout << r.getNumBallots() << std::endl;
 
   return this->getNumBallots() < r.getNumBallots();
 }
