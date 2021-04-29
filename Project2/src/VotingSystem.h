@@ -207,6 +207,18 @@ class VotingSystem {
 
   void assignParty();
 
+   /**
+   * @brief Adds to the current number of ballots.
+   *
+   * @param[in] ballots The number of ballots to add.
+   * Takes in an int and adds it to the current number of ballots.
+   *
+   * @return void.
+   */
+  void addNumBallots(int ballots){
+    numBallots += ballots;
+  }
+
   /**
    * @brief Sets numBallots to num
    *
