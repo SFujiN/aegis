@@ -3,7 +3,7 @@ Team7 (Golemo, Huynh, Ly, Vang)
 The purpose of these documents is to provide detailed documentation of the Aegis program that operates on the two types of voting systems, namely Open Party Listing(OPL) and Instant Runoff(IR). This software will take in a csv file and determine the outcome based on the two types of voting systems (OPL or IR). This documentation is provided to show the structure, classes and functions used in order to run a voting system.
 
 ## Running Aegis
-The program Aegis can be built with a provided makefile is the src folder
+The program Aegis can be built with a provided makefile in the src folder (tested on VOLE with g++ version 9.3.0)
 
 $ make
 
