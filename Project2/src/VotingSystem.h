@@ -196,16 +196,24 @@ class VotingSystem {
   bool partyExists(char party);
 
   /**
- * @brief Adds candidates to parties.
- *
- * Goes through every candidate and party and checks the candidate's party.
- * Then adds the candidate to that party if the party matches
- * Repeat for all of the candidates and parties.
- *
- * @return void.
+   * @brief Adds candidates to parties.
+   *
+   * Goes through every candidate and party and checks the candidate's party.
+   * Then adds the candidate to that party if the party matches
+   * Repeat for all of the candidates and parties.
+   *
+   * @return void.
+   */
 
-*/
   void assignParty();
+
+  /**
+   * @brief Sets numBallots to num
+   *
+   * @param int, sets numBallots equal to this.
+   *
+   */
+  void setNumBallots(int num) { numBallots = num; }
 
   /**
    * @brief Destructor for VotingSystem types

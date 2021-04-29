@@ -81,10 +81,16 @@ int main(int argc, char *argv[]) {
               Candidate(partyLetter, it->substr(0, it->find(' '))));
         }
         for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
-          Aegis->getCandidates()
-              .at(IRBallotToIndex(*it))
-              .addBallot(Ballot(IRBallotToVec(candidateNum, *it)));
+          std::vector<int> ballot_int_vector(IRBallotToVec(candidateNum, *it));
+          if (ballot_int_vector.at((ballot_int_vector.size() + 1) / 2 - 1)) {
+            Aegis->getCandidates()
+                .at(IRBallotToIndex(*it))
+                .addBallot(Ballot(ballot_int_vector));
+          } else {
+            ballotNum--;
+          }
         }
+        Aegis->setNumBallots(ballotNum);
       }
 
       if (electionType == "PO") {
