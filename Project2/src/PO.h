@@ -30,7 +30,7 @@ class PO : public VotingSystem {
    * @brief Constructor for PO. Sets number of candidates, and number of ballots.
    */
 
-  PO(int candidates, int ballots);
+  PO(int candidates);
   /**
    * @brief Runs the PO based election.
    *
@@ -38,6 +38,7 @@ class PO : public VotingSystem {
    *
    * @return void.
    */
+
   void runElection();
 
 
@@ -51,6 +52,7 @@ class PO : public VotingSystem {
    * @return void.
    */
   void displayResults();
+  void breakTie();
 };
 
 #endif

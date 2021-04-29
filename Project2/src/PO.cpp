@@ -1,14 +1,24 @@
 #include "../src/PO.h"
+#include <algorithm>
 
-PO::PO(int candidates, int ballots) {
+PO::PO(int candidates) {
   numCandidates = candidates;
-  numBallots = ballots;
+  numBallots = 0;
 }
-
 
 void PO::runElection() {
   std::sort(candidates.begin(), candidates.end());
   std::reverse(candidates.begin(), candidates.end());
+  breakTie();
+}
+
+void PO::breakTie() {
+  int i = 0;
+  while (candidates[0].getNumBallots() == candidates[i++].getNumBallots());
+  if (--i) {
+    srand (time(NULL));
+    iter_swap(candidates.begin(), candidates.begin() + rand() % i);
+  }
 }
 
 void PO::displayResults() {
