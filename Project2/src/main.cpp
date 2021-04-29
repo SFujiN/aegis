@@ -4,25 +4,28 @@
 // #include <string>
 // #include <vector>
 
-#include "../src/OPL.h"
 #include "../src/IR.h"
+#include "../src/OPL.h"
+#include "../src/PO.h"
 #include "../src/helpers.h"
 
 int main(int argc, char *argv[]) {
+  //Setting up Variables
   std::string fileName, fileContent, electionType, line;
   std::fstream file;
-  int candidateNum, seatNum, ballotNum;
+  int candidateNum, seatNum, ballotNum = 0;
   std::vector<std::string> candidateNames, rawBallotInfo;
   VotingSystem *Aegis = nullptr;
   std::cout << "Prototype: Aegis 0.0" << std::endl;
-
-  if (argc != 2) {
+  //If the arguments is less than 2, show current way to use.
+  if (argc < 2) {
     std::cout << "Usage: " << argv[0] << " <file name>" << std::endl;
   }
-  if (argc == 2) {
+  //If there are more than two arguments, then take in all the file arguments given.
+  if (argc >= 2) {
     fileName = argv[1];
     file.open(fileName, std::ios::in);
-
+    //Checking for the type of the election.
     if (!file.is_open()) {
       std::cout << "Couldn't open: " << fileName << std::endl;
     } else {
@@ -32,18 +35,18 @@ int main(int argc, char *argv[]) {
       getline(file, line);
       if (electionType == "OPL") {
         candidateNames = extractOPLNames(line);
-        file >> seatNum >> ballotNum;
+        file >> seatNum;
       }
       if (electionType == "IR") {
         candidateNames = extractIRNames(line);
         seatNum = 1;
+      }
+      if (electionType == "PO") {
+        candidateNames = extractOPLNames(line);
         file >> ballotNum;
       }
       getline(file, line);
-      while (getline(file, line)) {
-        rawBallotInfo.push_back(line);
-      }
-
+      //Same for IR and OPL, it just adds the information needed for that type of election.
       if (electionType == "OPL") {
         Aegis = new OPL(electionType, candidateNum, seatNum, ballotNum);
         for (auto it = candidateNames.begin(); it != candidateNames.end();
@@ -55,12 +58,30 @@ int main(int argc, char *argv[]) {
           Aegis->addCandidate(
               Candidate(partyLetter, it->substr(0, it->find(','))));
         }
-        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
-          Aegis->getCandidates()
-              .at(OPLBallotToIndex(*it))
-              .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+        file.close();
+        for (int i = 1; i < argc; i++) {
+          rawBallotInfo.clear();
+          fileName = argv[i];
+          file.open(fileName, std::ios::in);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          Aegis->addNumBallots(std::stoi(line));
+
+          while (getline(file, line)) {
+            rawBallotInfo.push_back(line);
+          }
+          for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end();
+               it++) {
+            Aegis->getCandidates()
+                .at(OPLBallotToIndex(*it))
+                .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+          }
+          file.close();
         }
-        //Aegis->assignParty();
+        // Aegis->assignParty();
       }
 
       if (electionType == "IR") {
@@ -75,14 +96,73 @@ int main(int argc, char *argv[]) {
           Aegis->addCandidate(
               Candidate(partyLetter, it->substr(0, it->find(' '))));
         }
-        for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end(); it++) {
-          Aegis->getCandidates()
-              .at(IRBallotToIndex(*it))
-              .addBallot(Ballot(IRBallotToVec(candidateNum, *it)));
+        file.close();
+        for (int i = 1; i < argc; i++) {
+          rawBallotInfo.clear();
+          fileName = argv[i];
+          file.open(fileName, std::ios::in);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          Aegis->addNumBallots(std::stoi(line));
+
+          while (getline(file, line)) {
+            rawBallotInfo.push_back(line);
+          }
+          int numInvalidatedBallots = 0;
+          for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end();
+               it++) {
+            std::vector<int> ballot_int_vector(
+                IRBallotToVec(candidateNum, *it));
+            if (ballot_int_vector.at((ballot_int_vector.size() + 1) / 2 - 1)) {
+              Aegis->getCandidates()
+                  .at(IRBallotToIndex(*it))
+                  .addBallot(Ballot(ballot_int_vector));
+            } else {
+              numInvalidatedBallots++;
+            }
+          }
+          Aegis->setNumBallots(Aegis->getNumBallots() - numInvalidatedBallots);
+          file.close();
+        }
+      }
+
+      if (electionType == "PO") {
+        Aegis = new PO(candidateNum);
+        for (auto it = candidateNames.begin(); it != candidateNames.end();
+             it++) {
+          std::string line = *it;
+          char partyLetter = it->at(it->find(',') + 1);
+          Aegis->addCandidate(
+              Candidate(partyLetter, it->substr(0, it->find(','))));
+        }
+        file.close();
+        for (int i = 1; i < argc; i++) {
+          rawBallotInfo.clear();
+          fileName = argv[i];
+          file.open(fileName, std::ios::in);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          getline(file, line);
+          Aegis->addNumBallots(std::stoi(line));
+
+          while (getline(file, line)) {
+            rawBallotInfo.push_back(line);
+          }
+          for (auto it = rawBallotInfo.begin(); it != rawBallotInfo.end();
+               it++) {
+            Aegis->getCandidates()
+                .at(OPLBallotToIndex(*it))
+                .addBallot(Ballot(BallotToVec(candidateNum, *it)));
+          }
+          file.close();
         }
       }
       // printVec(rawBallotInfo);
-      // std::vector<int> test2 = BallotToVec(candidateNum, rawBallotInfo.at(0));
+      // std::vector<int> test2 = BallotToVec(candidateNum,
+      // rawBallotInfo.at(0));
 
       // print out the index value of first ballet
       // std::cout << OPLBallotToIndex(rawBallotInfo.at(0)) << std::endl;
@@ -90,13 +170,17 @@ int main(int argc, char *argv[]) {
       // print to see what's in a ballot vector
       // printVecI(test2);
 
-      for (auto it = Aegis->getParties().begin();
-           it != Aegis->getParties().end(); it++) {
-        std::cout << it->getPartyName() << " ";
-      }
-      std::cout << std::endl;
+      //Prints out the party names.
+      else {
+        for (auto it = Aegis->getParties().begin();
+             it != Aegis->getParties().end(); it++) {
+          std::cout << it->getPartyName() << " ";
+        }
+        std::cout << std::endl;
+        //Assigns the parties to the system.
+        Aegis->assignParty();
 
-      Aegis->assignParty();
+      }
       /* std::vector<Party> newParties = Aegis->getParties();
       for (int i = 0; i < 4; i++) {
         Party thisParty = newParties[i];
@@ -105,7 +189,7 @@ int main(int argc, char *argv[]) {
         std::cout << thisCandidate[0]->getName() << std::endl;
       } */
 
-      //parties are now set up
+      // parties are now set up
       Aegis->runElection();
       Aegis->displayResults();
 
@@ -122,8 +206,7 @@ int main(int argc, char *argv[]) {
     if (Aegis != nullptr) {
       delete Aegis;
     }
-
-    file.close();
+    // TODO: close all files if needed
   }
 
   return 0;

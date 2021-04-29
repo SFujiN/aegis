@@ -196,16 +196,34 @@ class VotingSystem {
   bool partyExists(char party);
 
   /**
- * @brief Adds candidates to parties.
- *
- * Goes through every candidate and party and checks the candidate's party.
- * Then adds the candidate to that party if the party matches
- * Repeat for all of the candidates and parties.
- *
- * @return void.
+   * @brief Adds candidates to parties.
+   *
+   * Goes through every candidate and party and checks the candidate's party.
+   * Then adds the candidate to that party if the party matches
+   * Repeat for all of the candidates and parties.
+   *
+   * @return void.
+   */
 
-*/
   void assignParty();
+
+  /**
+   * @brief Adds to the current number of ballots.
+   *
+   * @param[in] ballots The number of ballots to add.
+   * Takes in an int and adds it to the current number of ballots.
+   *
+   * @return void.
+   */
+  void addNumBallots(int ballots) { numBallots += ballots; }
+
+  /**
+   * @brief Sets numBallots to num
+   *
+   * @param int, sets numBallots equal to this.
+   *
+   */
+  void setNumBallots(int num) { numBallots = num; }
 
   /**
    * @brief Destructor for VotingSystem types
@@ -221,6 +239,8 @@ class VotingSystem {
       timeTaken;  ///< holds the amount of time taken by the program to execute
   std::vector<Candidate>
       candidates;  ///< vector to hold candidates running for a seat
+  std::vector<Candidate> sortedCandidates;
+  std::vector<Candidate> tiedCandidates;
   std::vector<Party>
       parties;  ///< vector to hold all parties involved with the election
   std::ofstream auditFile;    ///<
